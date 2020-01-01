@@ -1,23 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ColorChanger from "./components/ColorChanger";
+import colors from "./constants/Colors";
+import * as Font from "expo-font";
 
-const colors = ["#f4976c", "#fbe8a6", "#d2fdff", "#b4dfe5"];
+const backgrounds = [
+  colors.darkIce,
+  colors.darkOrange,
+  colors.lightIce,
+  colors.lightOrange
+];
 
 export default function App() {
   const [bgColor, setbgColor] = useState(0);
 
   const changeColorHandler = () => {
-    setbgColor((bgColor + 1) % colors.length);
+    setbgColor((bgColor + 1) % backgrounds.length);
   };
 
+  useEffect(() => {
+    Font.loadAsync({
+      "montserrat-thin": require("./assets/fonts/Montserrat-Thin.ttf"),
+      "montserrat-light": require("./assets/fonts/Montserrat-Light.ttf"),
+      "montserrat-regular": require("./assets/fonts/Montserrat-Regular.ttf"),
+      "montserrat-medium": require("./assets/fonts/Montserrat-Medium.ttf"),
+      "montserrat-bold": require("./assets/fonts/Montserrat-Bold.ttf")
+    });
+  });
+
   return (
-    <View style={{ ...styles.container, backgroundColor: colors[bgColor] }}>
+    <View
+      style={{ ...styles.container, backgroundColor: backgrounds[bgColor] }}
+    >
       <Text style={styles.titleText}>Moments by SVJ</Text>
       <ColorChanger
         changeColor={() => {
           changeColorHandler();
-          console.log("Changing index: " + bgColor);
         }}
       />
     </View>
@@ -31,8 +49,8 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   titleText: {
-    color: "#303c6c",
+    color: colors.primary,
     fontSize: 30,
-    fontWeight: "300"
+    fontFamily: "montserrat-medium"
   }
 });
