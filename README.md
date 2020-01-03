@@ -64,7 +64,9 @@ Please contact the SVJ team about contribution. See github profiles below.
 
 We use [Semantic Versioning](http://semver.org/) for our version labels.
 
-[No versions released yet]
+[No app builds released yet]
+
+For what we have so far, check [this expo link](https://exp.host/@jchengjr77/moments-app).
 
 ## Creators
 
