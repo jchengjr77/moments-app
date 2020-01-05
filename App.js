@@ -1,24 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import ColorChanger from "./components/ColorChanger";
-import colors from "./constants/Colors";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
-
-const backgrounds = [
-  colors.darkIce,
-  colors.darkOrange,
-  colors.lightIce,
-  colors.lightOrange
-];
+import StartScreen from "./screens/StartScreen";
 
 export default function App() {
-  const [bgColor, setbgColor] = useState(0);
   const [loaded, setLoaded] = useState(false);
-
-  const changeColorHandler = () => {
-    setbgColor((bgColor + 1) % backgrounds.length);
-  };
+  const [currPage, setCurrPage] = useState("start");
 
   const handleLoadError = error => {
     console.warn(error);
@@ -41,20 +29,15 @@ export default function App() {
     ]);
   }
 
-  // If all content is finished loading
+  let content = <StartScreen />;
+
+  if (currPage === "start") {
+    content = <StartScreen />;
+  }
+
   if (loaded) {
-    return (
-      <View
-        style={{ ...styles.container, backgroundColor: backgrounds[bgColor] }}
-      >
-        <Text style={styles.titleText}>Moments by SVJ</Text>
-        <ColorChanger
-          changeColor={() => {
-            changeColorHandler();
-          }}
-        />
-      </View>
-    );
+    // If all content is finished loading
+    return <View style={styles.screen}>{content}</View>;
   } else {
     // AppLoading component loads all resouces first
     return (
@@ -68,14 +51,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  titleText: {
-    color: colors.primary,
-    fontSize: 30,
-    fontFamily: "montserrat-regular"
+  screen: {
+    flex: 1
   }
 });
