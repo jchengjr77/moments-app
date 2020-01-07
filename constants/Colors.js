@@ -7,6 +7,10 @@ export default {
   darkButton: "#4759a1",
   lightButton: "#d2fdff",
   primaryButton: "#d6835c",
-  secondaryButton: "#fbe8a6",
+  primaryButtonDark: "#a35029",
+  primaryButtonShadow: "#f8a57e",
+  secondaryButton: "#303c6c",
+  secondaryButtonDark: "#101a4a",
+  secondaryButtonShadow: "#525e8e",
   splashBackground: "#F0F2F4"
 };
