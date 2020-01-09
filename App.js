@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import StartScreen from "./screens/StartScreen";
+import SignupScreen from "./screens/SignupScreen";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -11,6 +12,10 @@ export default function App() {
   const handleLoadError = error => {
     console.warn(error);
   };
+
+  //write swtiching function
+  //pass the switching as prop to startscreen object
+  //in startscreen.js use the function by doing props.propname("string");
 
   const handleLoadComplete = () => {
     setLoaded(true);
@@ -29,10 +34,14 @@ export default function App() {
     ]);
   }
 
-  let content = <StartScreen />;
+  let content = <SignupScreen />;
+
+
 
   if (currPage === "start") {
-    content = <StartScreen />;
+    content = <SignupScreen />;
+  } else if (currPage === "signup") {
+    content = <SignupScreen />;
   }
 
   if (loaded) {

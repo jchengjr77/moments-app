@@ -19,19 +19,19 @@ import BigSecondaryButton from "../components/BigSecondaryButton";
 import colors from "../constants/Colors";
 import splashImg from "../assets/splash.png";
 
-
-
-const StartScreen = props => {
+const SignupScreen = props => {
   let buttonWidth = Dimensions.get("window").width * 0.75;
 
-  const loginHandler = () => {
-    console.log("Login Button Pressed");
-
+  const emailHandler = () => {
+    console.log("Email Button Pressed");
   };
 
-  const signupHandler = () => {
-    console.log("Signup Button Pressed");
-    //setCurrPage("signup");
+  const facebookHandler = () => {
+    console.log("Facebook Button Pressed");
+  };
+
+  const googleHandler = () => {
+    console.log("Google Button Pressed");
   };
 
   return (
@@ -39,13 +39,18 @@ const StartScreen = props => {
       <ImageBackground style={styles.splash} source={splashImg}>
         <View style={styles.buttonCont}>
           <BigPrimaryButton
-            title="Login"
-            onPress={loginHandler}
+            title="Email"
+            onPress={emailHandler}
             width={buttonWidth}
           />
           <BigSecondaryButton
-            title="Sign Up"
-            onPress={signupHandler}
+            title="Facebook"
+            onPress={facebookHandler}
+            width={buttonWidth}
+          />
+          <BigSecondaryButton
+            title="Google"
+            onPress={googleHandler}
             width={buttonWidth}
           />
         </View>
@@ -75,4 +80,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default StartScreen;
+export default SignupScreen;
