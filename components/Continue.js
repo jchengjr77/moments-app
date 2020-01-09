@@ -1,3 +1,10 @@
+/**
+ * At the time that I'm writing this comment, this component is useless.
+ * Ignore it for now.
+ *
+ * * NOTE: Do not delete, in case of future use.
+ */
+
 import React from "react";
 import { View, Button, StyleSheet, Dimensions } from "react-native";
 import colors from "../constants/Colors";

@@ -29,6 +29,10 @@ export default function App() {
     ]);
   }
 
+  /**
+   * This content variable will change according to which page user is on.
+   * Use different key strings to manage the pages.
+   */
   let content = <StartScreen />;
 
   if (currPage === "start") {
