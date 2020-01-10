@@ -17,6 +17,7 @@ import { View, StyleSheet, ImageBackground, Dimensions } from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
 import BigSecondaryButton from "../components/BigSecondaryButton";
 import colors from "../constants/Colors";
+import pages from "../constants/Pages";
 import splashImg from "../assets/splash.png";
 
 const StartScreen = props => {
@@ -24,10 +25,12 @@ const StartScreen = props => {
 
   const loginHandler = () => {
     console.log("Login Button Pressed");
+    props.switchHandler(pages.loginPage);
   };
 
   const signupHandler = () => {
     console.log("Signup Button Pressed");
+    props.switchHandler(pages.signupPage);
   };
 
   return (

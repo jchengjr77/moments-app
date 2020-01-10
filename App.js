@@ -3,13 +3,30 @@ import { StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import StartScreen from "./screens/StartScreen";
+import SignupScreen from "./screens/SignupScreen";
+import pages from "./constants/Pages";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
-  const [currPage, setCurrPage] = useState("start");
+  const [currPage, setCurrPage] = useState(pages.startPage);
 
   const handleLoadError = error => {
     console.warn(error);
+  };
+
+  /**
+   * * Switching function
+   * This is the main mechanism for switching pages.
+   * To add a new page to switch to, just add a key string of your choice.
+   * Could be anything you want, as long is the if statement below regarding
+   * currPage also scans for that specific key string.
+   */
+  const handleSwitchPages = keyString => {
+    /**
+     * ! This needs some error checking
+     */
+    console.log("Switching to page: " + keyString);
+    setCurrPage(keyString);
   };
 
   const handleLoadComplete = () => {
@@ -35,8 +52,15 @@ export default function App() {
    */
   let content = <StartScreen />;
 
-  if (currPage === "start") {
-    content = <StartScreen />;
+  /**
+   * If statement controlling page display. It's gonna get big.
+   */
+  if (currPage === pages.startPage) {
+    content = <StartScreen switchHandler={handleSwitchPages} />;
+  } else if (currPage === pages.signupPage) {
+    content = <SignupScreen />;
+  } else if (currPage === pages.loginPage) {
+    content = <StartScreen switchHandler={handleSwitchPages} />; // ! Temporary
   }
 
   if (loaded) {
