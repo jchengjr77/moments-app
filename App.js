@@ -4,6 +4,8 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import StartScreen from "./screens/StartScreen";
 import SignupScreen from "./screens/SignupScreen";
+import LoginScreen from "./screens/LoginScreen";
+
 import pages from "./constants/Pages";
 
 export default function App() {
@@ -54,9 +56,9 @@ export default function App() {
   if (currPage === pages.startPage) {
     content = <StartScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.signupPage) {
-    content = <SignupScreen />;
+    content = <SignupScreen switchHandler={handleSwitchPages}/>;
   } else if (currPage === pages.loginPage) {
-    content = <StartScreen switchHandler={handleSwitchPages} />; // ! Temporary
+    content = <LoginScreen switchHandler={handleSwitchPages} />; // ! Temporary
   }
 
   if (loaded) {
