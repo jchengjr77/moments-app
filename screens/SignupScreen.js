@@ -1,21 +1,11 @@
 /**
- * * This screen is a preserved splash screen
- * Essentially just a modified splash screen with a signup or login button.
- * This is so we can show off the art a little bit, and give
- * the users a moment to orient themselves.
- *
- * The Sign Up button should lead to the Signup page, which is the page
- * where the user onboards for the first time.
- *
- * The Log In button should lead to the Login page, where the user simply
- * inputs their existing username and password to get started.
- *
+ * ! @Vignesh comment the file haha
  */
 
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet, ImageBackground, Dimensions } from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
-import BigSecondaryButton from "../components/BigSecondaryButton";
+import AwesomeButton from "react-native-really-awesome-button";
 import colors from "../constants/Colors";
 import splashImg from "../assets/splash.png";
 
@@ -43,16 +33,32 @@ const SignupScreen = props => {
             onPress={emailHandler}
             width={buttonWidth}
           />
-          <BigSecondaryButton
-            title="Facebook"
+          <AwesomeButton
+            backgroundColor="#3b5998"
+            backgroundDarker="#193776"
+            backgroundShadow="#8b9dc3"
+            raiseLevel={4}
+            textFontFamily="montserrat-bold"
+            textColor="#ffffff"
+            textSize={20}
             onPress={facebookHandler}
             width={buttonWidth}
-          />
-          <BigSecondaryButton
-            title="Google"
+          >
+            Facebook
+          </AwesomeButton>
+          <AwesomeButton
+            backgroundColor="#ffffff"
+            backgroundDarker="#64a7F6"
+            backgroundShadow="#eeeeee"
+            raiseLevel={4}
+            textFontFamily="montserrat-bold"
+            textColor="#333333"
+            textSize={20}
             onPress={googleHandler}
             width={buttonWidth}
-          />
+          >
+            Google
+          </AwesomeButton>
         </View>
       </ImageBackground>
     </View>
