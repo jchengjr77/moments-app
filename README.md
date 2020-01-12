@@ -10,6 +10,15 @@ We're a glass-half-full kind of team, and that's what Moments is all about. Gett
 
 With Moments, you can also create new memories! Send handwritten notes to your closest friends, or buy a drink, snack, or small gift for your loved one through the Moments social platform. They'll appreciate the gesture, and so will we! Light points will be awarded for engaging with your friends and family, just to thank you for bringing a little light into their life.
 
+## Official Color Pallete
+
+- ![#FBE8A6](https://placehold.it/15/FBE8A6/000000?text=+) `#FBE8A6`
+- ![#F49763](https://placehold.it/15/F49763/000000?text=+) `#F49763`
+- ![#303C6C](https://placehold.it/15/303C6C/000000?text=+) `#303C6C`
+- ![#B4DFE5](https://placehold.it/15/B4DFE5/000000?text=+) `#B4DFE5`
+- ![#D2FDFF](https://placehold.it/15/D2FDFF/000000?text=+) `#D2FDFF`
+
+
 ## Getting Started
 
 Moments is an app built on React Native, intended for release on both Google Play store and iOS App store. However, you can also contribute and/or test the app through this repo

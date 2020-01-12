@@ -10,7 +10,7 @@ import colors from "../constants/Colors";
 import pages from "../constants/Pages";
 import splashImg from "../assets/splash.png";
 
-const SignupScreen = props => {
+const LoginScreen = props => {
   let buttonWidth = Dimensions.get("window").width * 0.75;
 
 
@@ -40,6 +40,7 @@ const SignupScreen = props => {
             onPress={emailHandler}
             width={buttonWidth}
             //height = {buttonHeight}
+
           />
           <AwesomeButton
             backgroundColor="#3b5998"
@@ -113,4 +114,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SignupScreen;
+export default LoginScreen;
