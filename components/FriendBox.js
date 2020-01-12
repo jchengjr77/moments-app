@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import deleteFriend from "../assets/deleteFriendBig.png";
 import sendLove from "../assets/sendLove.png";
-import empty from "../assets/empty.png";
+import empty from "../assets/no-profile.png";
 
 const FriendBox = props => {
   const friendHandler = () => {

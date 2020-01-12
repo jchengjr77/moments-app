@@ -4,6 +4,7 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import StartScreen from "./screens/StartScreen";
 import SignupScreen from "./screens/SignupScreen";
+import FriendScreen from "./screens/FriendScreen";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,12 +35,10 @@ export default function App() {
     ]);
   }
 
-  let content = <SignupScreen />;
-
-
+  let content = <FriendScreen />;
 
   if (currPage === "start") {
-    content = <SignupScreen />;
+    content = <FriendScreen />;
   } else if (currPage === "signup") {
     content = <SignupScreen />;
   }
