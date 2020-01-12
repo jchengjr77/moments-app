@@ -34,6 +34,11 @@ const FriendScreen = props => {
           name="Bot 3"
           numFriends="7 mutual friends"
         />
+        <FriendBox
+          profPic={noProf}
+          name="Bot 4"
+          numFriends="2 mutual friends"
+        />
       </View>
     </View>
   );

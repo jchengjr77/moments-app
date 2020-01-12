@@ -5,12 +5,25 @@ import {
   Dimensions,
   Text,
   Image,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  TouchableHighlight
 } from "react-native";
+import deleteFriend from "../assets/deleteFriendBig.png";
+import sendLove from "../assets/sendLove.png";
+import empty from "../assets/empty.png";
 
 const FriendBox = props => {
   const friendHandler = () => {
     console.log("Clicked on friend: ");
+    //setCurrPage("");
+  };
+  const deleteHandler = () => {
+    console.log("Deleted Friend: ");
+    //setCurrPage("");
+  };
+
+  const loveHandler = () => {
+    console.log("Sent Love to Friend: ");
     //setCurrPage("");
   };
 
@@ -26,9 +39,29 @@ const FriendBox = props => {
           />
         </View>
         {/* Text Styles */}
-        <View style={styles.textCont}>
+        <View style={styles.textCont} flex={9}>
           <Text style={styles.nameStyles}>{props.name}</Text>
           <Text style={styles.mutualStyles}>{props.numFriends}</Text>
+        </View>
+        {/* Send Love */}
+        <View style={styles.builtinCont}>
+          <TouchableHighlight onPress={loveHandler} underlayColor="#D2FDFF">
+            <View style={styles.builtinView}>
+              <Image style={styles.builtinImg} source={sendLove} />
+            </View>
+          </TouchableHighlight>
+        </View>
+        {/* Spacing */}
+        <View style={styles.builtinCont}>
+          <View></View>
+        </View>
+        {/* Delete Friend */}
+        <View style={styles.builtinCont}>
+          <TouchableHighlight onPress={deleteHandler} underlayColor="#D2FDFF">
+            <View style={styles.builtinView}>
+              <Image style={styles.builtinImg} source={deleteFriend} />
+            </View>
+          </TouchableHighlight>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -61,6 +94,21 @@ const styles = StyleSheet.create({
   mutualStyles: {
     borderWidth: 0,
     paddingTop: -5
+  },
+  builtinCont: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  builtinView: {
+    width: Dimensions.get("window").width * 0.06,
+    height: Dimensions.get("window").width * 0.06,
+    alignSelf: "flex-end"
+  },
+  builtinImg: {
+    flex: 1,
+    height: undefined,
+    width: undefined
   }
 });
 
