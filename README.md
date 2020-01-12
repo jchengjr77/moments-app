@@ -73,3 +73,11 @@ For what we have so far, check [this expo link](https://exp.host/@jchengjr77/mom
 - **JJ Cheng** - [github](https://github.com/jchengjr77) - [website](https://jjcheng.me)
 - **Sean Prendi** - [github](https://github.com/SeanPrendi)
 - **Vignesh Rajmohan** - [github](https://github.com/vigneshrajmohan)
+
+
+For reference: Color scheme: 
+#FBE8A6 (yellow)
+#F49763 (orange)
+#303C6C (dark blue)
+#B4DFE5 (darker light blue)
+#D2FDFF (lighter light blue)
