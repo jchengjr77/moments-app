@@ -5,7 +5,7 @@ import { AppLoading } from "expo";
 import StartScreen from "./screens/StartScreen";
 import SignupScreen from "./screens/SignupScreen";
 import LoginScreen from "./screens/LoginScreen";
-
+import HomeScreen from "./screens/HomeScreen";
 import pages from "./constants/Pages";
 
 export default function App() {
@@ -60,9 +60,11 @@ export default function App() {
   if (currPage === pages.startPage) {
     content = <StartScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.signupPage) {
-    content = <SignupScreen switchHandler={handleSwitchPages}/>;
+    content = <SignupScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.loginPage) {
     content = <LoginScreen switchHandler={handleSwitchPages} />; // ! Temporary
+  } else if (currPage === pages.homePage) {
+    content = <HomeScreen switchHandler={handleSwitchPages} />;
   }
 
   if (loaded) {
