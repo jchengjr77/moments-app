@@ -4,82 +4,29 @@
  * *
  * * Short Term: This should be pulling friends from a JSON file
  * * Long Term: This should be pulling friends from a database
- *
- */
+ **/
 
 import React from "react";
 import { View, StyleSheet, Dimensions, ScrollView } from "react-native";
 import FriendBox from "../components/FriendBox";
 import colors from "../constants/Colors";
-import noProf from "../assets/no-profile.png";
-import testImg from "../assets/testImg.png";
-import iconImg from "../assets/iconNoBG.png";
+import fakeData from "../Data/FriendData.json";
 
-const FriendScreen = props => {
+const FriendScreen = (props) => {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View flexDirection="column">
-          <FriendBox
-            profPic={noProf}
-            name="Bot 1"
-            numFriends="5 mutual friends"
-          />
-          <FriendBox
-            profPic={testImg}
-            name="Bot 2"
-            numFriends="0 mutual friends"
-          />
-          <FriendBox
-            profPic={iconImg}
-            name="Bot 3"
-            numFriends="7 mutual friends"
-          />
-          <FriendBox
-            profPic={noProf}
-            name="Bot 4"
-            numFriends="2 mutual friends"
-          />
-          <FriendBox
-            profPic={noProf}
-            name="Bot 1"
-            numFriends="5 mutual friends"
-          />
-          <FriendBox
-            profPic={testImg}
-            name="Bot 2"
-            numFriends="0 mutual friends"
-          />
-          <FriendBox
-            profPic={iconImg}
-            name="Bot 3"
-            numFriends="7 mutual friends"
-          />
-          <FriendBox
-            profPic={noProf}
-            name="Bot 4"
-            numFriends="2 mutual friends"
-          />
-          <FriendBox
-            profPic={noProf}
-            name="Bot 1"
-            numFriends="5 mutual friends"
-          />
-          <FriendBox
-            profPic={testImg}
-            name="Bot 2"
-            numFriends="0 mutual friends"
-          />
-          <FriendBox
-            profPic={iconImg}
-            name="Bot 3"
-            numFriends="7 mutual friends"
-          />
-          <FriendBox
-            profPic={noProf}
-            name="Bot 4"
-            numFriends="2 mutual friends"
-          />
+          {fakeData.friends.map(function(d, idx) {
+            return (
+              <FriendBox
+                key={idx}
+                profPic={d.profPic}
+                name={d.name}
+                numFriends={d.mutualFriends}
+              />
+            );
+          })}
         </View>
       </ScrollView>
     </View>

@@ -10,42 +10,44 @@ import {
 } from "react-native";
 import deleteFriend from "../assets/deleteFriendBig.png";
 import sendLove from "../assets/sendLove.png";
-import empty from "../assets/no-profile.png";
 
 const FriendBox = props => {
-  const friendHandler = () => {
-    console.log("Clicked on friend: ");
+  const friendHandler = name => {
+    console.log("Clicked on friend: " + name);
     //setCurrPage("");
   };
-  const deleteHandler = () => {
-    console.log("Deleted Friend: ");
+  const deleteHandler = name => {
+    console.log("Deleted Friend: " + name);
     //setCurrPage("");
   };
 
-  const loveHandler = () => {
-    console.log("Sent Love to Friend: ");
+  const loveHandler = name => {
+    console.log("Sent Love to Friend: " + name);
     //setCurrPage("");
   };
 
   return (
-    <TouchableWithoutFeedback onPress={friendHandler}>
+    <TouchableWithoutFeedback onPress={friendHandler.bind(this, props.name)}>
       <View flexDirection="row">
         {/* Profile Picture Styles */}
         <View style={styles.imgCont}>
           <Image
             // resizeMode="cover" // Note: profile pictures should enforce square aspect ratio because of "cover" resize mode
             style={styles.imgStyles}
-            source={props.profPic}
+            source={{uri : props.profPic}}
           />
         </View>
         {/* Text Styles */}
         <View style={styles.textCont} flex={9}>
           <Text style={styles.nameStyles}>{props.name}</Text>
-          <Text style={styles.mutualStyles}>{props.numFriends}</Text>
+          <Text style={styles.mutualStyles}>{props.numFriends + " mutual friends"}</Text>
         </View>
         {/* Send Love */}
         <View style={styles.builtinCont}>
-          <TouchableHighlight onPress={loveHandler} underlayColor="#D2FDFF">
+          <TouchableHighlight
+            onPress={loveHandler.bind(this, props.name)}
+            underlayColor="#D2FDFF"
+          >
             <View style={styles.builtinView}>
               <Image style={styles.builtinImg} source={sendLove} />
             </View>
@@ -57,7 +59,10 @@ const FriendBox = props => {
         </View>
         {/* Delete Friend */}
         <View style={styles.builtinCont}>
-          <TouchableHighlight onPress={deleteHandler} underlayColor="#D2FDFF">
+          <TouchableHighlight
+            onPress={deleteHandler.bind(this, props.name)}
+            underlayColor="#D2FDFF"
+          >
             <View style={styles.builtinView}>
               <Image style={styles.builtinImg} source={deleteFriend} />
             </View>

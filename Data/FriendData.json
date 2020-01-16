@@ -1,0 +1,22 @@
+{
+  "friends": [
+    {
+      "name": "JJ",
+      "mutualFriends": 10,
+      "profile": null,
+      "profPic": "https://scontent.fagc2-1.fna.fbcdn.net/v/t1.0-9/34443347_958648314296176_3151701204292075520_n.jpg?_nc_cat=104&_nc_ohc=3trgmrrPozYAX8oqRPB&_nc_ht=scontent.fagc2-1.fna&oh=579f7dfea4d6e05ae42b334cc326f668&oe=5E97E66D"
+    },
+    {
+      "name": "Vignesh",
+      "mutualFriends": 8,
+      "profile": null,
+      "profPic": "https://media-exp1.licdn.com/dms/image/C4E03AQGvGoWshKrJOw/profile-displayphoto-shrink_200_200/0?e=1584576000&v=beta&t=n467PF3WKVikw2xr9CTth1rZZKhw0s34DUdbwHN9cow"
+    },
+    {
+      "name": "Sean",
+      "mutualFriends": 3,
+      "profile": null,
+      "profPic": "https://instagram.fagc2-1.fna.fbcdn.net/v/t51.2885-19/s320x320/38450825_282428855879638_7699975917539426304_n.jpg?_nc_ht=instagram.fagc2-1.fna.fbcdn.net&_nc_ohc=BjueoN-s88kAX9TlpOZ&oh=5bc1f65ded75ce1b0bbd55f5ff1c8244&oe=5E982289"
+    }
+  ]
+}
