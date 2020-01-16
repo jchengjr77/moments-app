@@ -8,8 +8,8 @@ import {
   TouchableWithoutFeedback,
   TouchableHighlight
 } from "react-native";
-import deleteFriend from "../assets/deleteFriendBig.png";
-import sendLove from "../assets/sendLove.png";
+import deleteFriend from "../assets/trash.png";
+import sendLove from "../assets/heart.png";
 
 const FriendBox = props => {
   const friendHandler = name => {
