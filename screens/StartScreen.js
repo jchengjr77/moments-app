@@ -25,7 +25,8 @@ const StartScreen = props => {
 
   const loginHandler = () => {
     console.log("Login Button Pressed");
-    props.switchHandler(pages.loginPage);
+    // ! This should be going to pages.loginPage
+    props.switchHandler(pages.homePage);
   };
 
   const signupHandler = () => {

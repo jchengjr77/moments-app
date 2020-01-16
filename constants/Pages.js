@@ -12,5 +12,6 @@
 export default {
   startPage: "StartScreen",
   signupPage: "SignupScreen",
-  loginPage: "LoginScreen"
+  loginPage: "LoginScreen",
+  homePage: "HomeScreen"
 };

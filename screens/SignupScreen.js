@@ -13,7 +13,6 @@ import splashImg from "../assets/splash.png";
 const SignupScreen = props => {
   let buttonWidth = Dimensions.get("window").width * 0.75;
 
-
   const emailHandler = () => {
     console.log("Email Button Pressed");
   };
@@ -52,11 +51,10 @@ const SignupScreen = props => {
             onPress={facebookHandler}
             width={buttonWidth}
             //height = {buttonHeight}
-
           >
             Facebook
           </AwesomeButton>
-          
+
           <AwesomeButton
             backgroundColor="#ffffff"
             backgroundDarker="#64a7F6"
@@ -71,20 +69,15 @@ const SignupScreen = props => {
           >
             Google
           </AwesomeButton>
-
-          
-
-
         </View>
         <View>
           <BigPrimaryButton
             title="↤"
             onPress={backHandler}
-            width={buttonWidth/6}
-            height = {Dimensions.get("window").height * 0.05}
-            paddingTop = {Dimensions.get("window").height / 7}
+            width={buttonWidth / 6}
+            height={Dimensions.get("window").height * 0.05}
+            paddingTop={Dimensions.get("window").height / 7}
           />
-
         </View>
       </ImageBackground>
     </View>
@@ -105,7 +98,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: Dimensions.get("window").height / 2.5
   },
-
   splash: {
     alignSelf: "center",
     width: "100%",
