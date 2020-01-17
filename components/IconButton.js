@@ -15,7 +15,7 @@ const IconButton = props => {
       backgroundColor={colors.lightOrange}
       backgroundDarker={colors.primaryButton}
       backgroundShadow={colors.primaryButtonShadow}
-      raiseLevel={4}
+      raiseLevel={0}
       width={props.width}
     >
       <Image source={props.img} />
