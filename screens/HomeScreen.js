@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
+import TopBar from "../components/TopBar";
 import AwesomeButton from "react-native-really-awesome-button";
 import colors from "../constants/Colors";
 
@@ -22,9 +23,7 @@ const HomeScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.topBar}>
-        <Text>Home Screen</Text>
-      </View>
+      <TopBar />
       <View style={styles.mainCard}>
         <Text>Main Card</Text>
       </View>
@@ -52,15 +51,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  topBar: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: colors.lightIce,
-    width: Dimensions.get("window").width
-  },
   mainCard: {
-    flex: 7,
+    flex: 6,
     justifyContent: "center"
   },
   buttonArea: {

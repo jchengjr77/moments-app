@@ -17,6 +17,7 @@ const IconButton = props => {
       backgroundShadow={colors.primaryButtonShadow}
       raiseLevel={0}
       width={props.width}
+      height={props.height}
     >
       <Image source={props.img} />
     </AwesomeButton>
