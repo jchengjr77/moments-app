@@ -7,6 +7,7 @@ import SignupScreen from "./screens/SignupScreen";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import pages from "./constants/Pages";
+import FriendScreen from "./screens/FriendScreen";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,19 +53,22 @@ export default function App() {
    * This content variable will change according to which page user is on.
    * Use different key strings to manage the pages.
    */
-  let content = <StartScreen />;
+  let content = <StartScreen switchHandler={handleSwitchPages} />;
 
   /**
    * If statement controlling page display. It's gonna get big.
    */
+  // ! Temporary assignments
   if (currPage === pages.startPage) {
     content = <StartScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.signupPage) {
     content = <SignupScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.loginPage) {
-    content = <LoginScreen switchHandler={handleSwitchPages} />; // ! Temporary
+    content = <LoginScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.homePage) {
     content = <HomeScreen switchHandler={handleSwitchPages} />;
+  } else if (currPage === pages.friendsPage) {
+    content = <FriendScreen switchHandler={handleSwitchPages} />;
   }
 
   if (loaded) {

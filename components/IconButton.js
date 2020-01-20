@@ -18,6 +18,7 @@ const IconButton = props => {
       raiseLevel={0}
       width={props.width}
       height={props.height}
+      onPress={props.onPress}
     >
       <Image source={props.img} />
     </AwesomeButton>

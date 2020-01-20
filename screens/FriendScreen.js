@@ -1,9 +1,9 @@
 /**
  * * This screen displays all of your friends
- * * Currently this just implements dynamically designed friends
- * *
- * * Short Term: This should be pulling friends from a JSON file
- * * Long Term: This should be pulling friends from a database
+ * Currently this just implements dynamically designed friends
+ *
+ * Short Term: This should be pulling friends from a JSON file
+ * Long Term: This should be pulling friends from a database
  **/
 
 import React from "react";
@@ -13,7 +13,7 @@ import FriendBox from "../components/FriendBox";
 import colors from "../constants/Colors";
 import fakeData from "../data/FriendData.json";
 
-const FriendScreen = (props) => {
+const FriendScreen = props => {
   return (
     <View style={styles.screen}>
       <TopBar />

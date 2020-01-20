@@ -13,5 +13,7 @@ export default {
   startPage: "StartScreen",
   signupPage: "SignupScreen",
   loginPage: "LoginScreen",
-  homePage: "HomeScreen"
+  homePage: "HomeScreen",
+  friendsPage: "FriendScreen",
+  favsPage: "FavsScreen"
 };

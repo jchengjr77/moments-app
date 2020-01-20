@@ -4,7 +4,7 @@ import IconButton from "./IconButton";
 
 // Icon imports
 import cameraIcon from "../assets/feathericons/camera.png";
-import starIcon from "../assets/feathericons/star.png";
+import menuIcon from "../assets/feathericons/menu.png";
 import namebar from "../assets/splash-basic-removebg.png";
 // End
 
@@ -15,7 +15,7 @@ const TopBar = props => {
         <IconButton
           width={Dimensions.get("window").width * 0.1}
           height={Dimensions.get("window").width * 0.1}
-          img={starIcon}
+          img={menuIcon}
         />
       </View>
       <View style={styles.nameArea}>
