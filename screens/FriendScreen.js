@@ -8,46 +8,46 @@
 
 import React from "react";
 import { View, StyleSheet, Dimensions, ScrollView } from "react-native";
+import TopBar from "../components/TopBar";
 import FriendBox from "../components/FriendBox";
 import colors from "../constants/Colors";
-import fakeData from "../Data/FriendData.json";
+import fakeData from "../data/FriendData.json";
 
 const FriendScreen = (props) => {
   return (
-    <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View flexDirection="column">
-          {fakeData.friends.map(function(d, idx) {
-            return (
-              <FriendBox
-                key={idx}
-                profPic={d.profPic}
-                name={d.name}
-                numFriends={d.mutualFriends}
-              />
-            );
-          })}
-        </View>
-      </ScrollView>
+    <View style={styles.screen}>
+      <TopBar />
+      <View style={styles.friendList}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View flexDirection="column">
+            {fakeData.friends.map(function(d, idx) {
+              return (
+                <FriendBox
+                  key={idx}
+                  profPic={d.profPic}
+                  name={d.name}
+                  numFriends={d.mutualFriends}
+                />
+              );
+            })}
+          </View>
+        </ScrollView>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    paddingTop: Dimensions.get("window").width * 0.2,
-    paddingLeft: Dimensions.get("window").width * 0.1,
-    paddingRight: Dimensions.get("window").width * 0.1,
     backgroundColor: colors.splashBackground
   },
-  buttonCont: {
-    flex: 1
-  },
-  splash: {
-    alignSelf: "center",
-    width: "100%",
-    height: "75%"
+  friendList: {
+    flex: 9,
+    paddingLeft: "10%",
+    paddingRight: "10%",
+    paddingBottom: "5%",
+    backgroundColor: colors.splashBackground
   }
 });
 
