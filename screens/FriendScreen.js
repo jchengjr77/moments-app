@@ -9,6 +9,7 @@
 import React from "react";
 import { View, StyleSheet, Dimensions, ScrollView } from "react-native";
 import TopBar from "../components/TopBar";
+import BottomBar from "../components/BottomBar";
 import FriendBox from "../components/FriendBox";
 import colors from "../constants/Colors";
 import fakeData from "../data/FriendData.json";
@@ -33,21 +34,20 @@ const FriendScreen = props => {
           </View>
         </ScrollView>
       </View>
+      <BottomBar switchHandler={props.switchHandler} active="friends" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   screen: {
-    flex: 1,
-    backgroundColor: colors.splashBackground
+    flex: 1
   },
   friendList: {
-    flex: 9,
+    flex: 6,
     paddingLeft: "10%",
     paddingRight: "10%",
-    paddingBottom: "5%",
-    backgroundColor: colors.splashBackground
+    paddingBottom: "5%"
   }
 });
 
