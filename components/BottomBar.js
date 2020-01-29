@@ -101,7 +101,6 @@ const BottomBar = props => {
 const styles = StyleSheet.create({
   buttonArea: {
     flex: 2,
-    paddingBottom: "10%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
