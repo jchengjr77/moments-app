@@ -46,8 +46,7 @@ const styles = StyleSheet.create({
   friendList: {
     flex: 6,
     paddingLeft: "10%",
-    paddingRight: "10%",
-    paddingBottom: "5%"
+    paddingRight: "10%"
   }
 });
 

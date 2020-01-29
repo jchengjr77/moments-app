@@ -15,5 +15,6 @@ export default {
   loginPage: "LoginScreen",
   homePage: "HomeScreen",
   friendsPage: "FriendScreen",
-  favsPage: "FavsScreen"
+  favsPage: "FavsScreen",
+  libPage: "LibraryScreen"
 };

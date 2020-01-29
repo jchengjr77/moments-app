@@ -7,6 +7,7 @@ import pages from "../constants/Pages";
 import bookIcon from "../assets/feathericons/book-open.png";
 import starIcon from "../assets/feathericons/star.png";
 import friendsIcon from "../assets/feathericons/users.png";
+import FriendScreen from "../screens/FriendScreen";
 // End
 
 /**
@@ -27,49 +28,70 @@ import friendsIcon from "../assets/feathericons/users.png";
  */
 
 const BottomBar = props => {
-  const toFriendsHandler = () => {
+  const toFriendsHandler = active => {
     console.log("Friends Button Pressed");
-    props.switchHandler(pages.friendsPage);
+    if (active) {
+      props.switchHandler(pages.homePage);
+    } else {
+      props.switchHandler(pages.friendsPage);
+    }
   };
 
-  const toLibHandler = () => {
+  const toLibHandler = active => {
     console.log("Library Button Pressed");
-    // ! Create Library page and switch to it
-    props.switchHandler(pages.homePage);
+    if (active) {
+      props.switchHandler(pages.homePage);
+    } else {
+      props.switchHandler(pages.libPage);
+    }
   };
 
-  const toFavsHandler = () => {
+  const toFavsHandler = active => {
     console.log("Favorites Button Pressed");
-    props.switchHandler(pages.favsPage);
+    if (active) {
+      props.switchHandler(pages.homePage);
+    } else {
+      props.switchHandler(pages.favsPage);
+    }
   };
 
-  var friendsActive = false;
-  var libActive = false;
-  var favActive = false;
+  let friendsActive,
+    libActive,
+    favActive = false;
 
-  if (props.active === "friends") friendsActive = true;
-  else if (props.active === "lib") libActive = true;
-  else if (props.active === "fav") favActive = true;
-  else console.log("Bottom Bar Non-active. ERROR.");
+  switch (props.active) {
+    case "friends":
+      friendsActive = true;
+      break;
+    case "lib":
+      libActive = true;
+      break;
+    case "fav":
+      favActive = true;
+      break;
+    default:
+      console.log("Bottom Bar Inactive.");
+      break;
+  }
 
   return (
     <View style={styles.buttonArea}>
       <IconButton
         width={Dimensions.get("window").width * 0.3}
         img={friendsIcon}
-        onPress={toFriendsHandler}
+        onPress={() => toFriendsHandler(friendsActive)}
         active={friendsActive}
       />
       <IconButton
         width={Dimensions.get("window").width * 0.3}
         img={bookIcon}
-        onPress={toLibHandler}
+        onPress={() => toLibHandler(libActive)}
         active={libActive}
       />
       <IconButton
         width={Dimensions.get("window").width * 0.3}
         img={starIcon}
-        onPress={toFavsHandler}
+        onPress={() => toFavsHandler(favActive)}
         active={favActive}
       />
     </View>
