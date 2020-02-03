@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
-    width: Dimensions.get("window").width
+    width: Dimensions.get("window").width 
   }
 });
 
