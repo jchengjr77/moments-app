@@ -1,83 +1,53 @@
 /**
- * ! @Vignesh comment the file haha
+ * Login screen should contain an username and password fields only.
+ * Sends a request to the database searching for the username and password.
  */
 
-import React from "react";
-import { View, StyleSheet, ImageBackground, Dimensions } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  TextInput,
+  Dimensions
+} from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
 import AwesomeButton from "react-native-really-awesome-button";
 import colors from "../constants/Colors";
 import pages from "../constants/Pages";
 import splashImg from "../assets/splash.png";
 
-const SignupScreen = props => {
-  let buttonWidth = Dimensions.get("window").width * 0.75;
-
-  const emailHandler = () => {
-    console.log("Email Button Pressed");
-  };
-
-  const facebookHandler = () => {
-    console.log("Facebook Button Pressed");
-  };
-
-  const googleHandler = () => {
-    console.log("Google Button Pressed");
-  };
-
-  const backHandler = () => {
-    console.log("Back Button Pressed");
-    props.switchHandler(pages.startPage);
-  };
+const LoginScreen = props => {
+  const [usrvalue, onChangeTextUsr] = useState("");
+  const [pwvalue, onChangeTextPw] = useState("");
+  const [selected, setSelected] = useState(false);
 
   return (
     <View style={styles.container}>
       <ImageBackground style={styles.splash} source={splashImg}>
         <View style={styles.buttonCont}>
-          <BigPrimaryButton
-            title="Email"
-            onPress={emailHandler}
-            width={buttonWidth}
-            //height = {buttonHeight}
+          <TextInput
+            value={usrvalue}
+            placeholder="Username"
+            onChangeText={text => onChangeTextUsr(text)}
+            style={styles.inputField}
+            onFocus={() => {
+              setSelected(true);
+            }}
+            selectTextOnFocus
           />
-          <AwesomeButton
-            backgroundColor="#3b5998"
-            backgroundDarker="#193776"
-            backgroundShadow="#8b9dc3"
-            raiseLevel={4}
-            textFontFamily="montserrat-bold"
-            textColor="#ffffff"
-            textSize={20}
-            onPress={facebookHandler}
-            width={buttonWidth}
-            //height = {buttonHeight}
-          >
-            Facebook
-          </AwesomeButton>
-
-          <AwesomeButton
-            backgroundColor="#ffffff"
-            backgroundDarker="#64a7F6"
-            backgroundShadow="#eeeeee"
-            raiseLevel={4}
-            textFontFamily="montserrat-bold"
-            textColor="#333333"
-            textSize={20}
-            onPress={googleHandler}
-            width={buttonWidth}
-            //height = {buttonHeight}
-          >
-            Google
-          </AwesomeButton>
-        </View>
-        <View>
-          <BigPrimaryButton
-            title="↤"
-            onPress={backHandler}
-            width={buttonWidth / 6}
-            height={Dimensions.get("window").height * 0.05}
-            paddingTop={Dimensions.get("window").height / 7}
+          <TextInput
+            defaultValue={pwvalue}
+            placeholder="Password"
+            onChangeText={text => onChangeTextPw(text)}
+            style={styles.inputField}
+            secureTextEntry // because it is a password
+            selectTextOnFocus
+            onFocus={() => {
+              style.backgroundColor = colors.lightOrange;
+            }}
           />
+          <BigPrimaryButton title="Submit" />
         </View>
       </ImageBackground>
     </View>
@@ -102,7 +72,16 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "100%",
     height: "75%"
+  },
+  inputField: {
+    borderColor: colors.primary,
+    backgroundColor: selected ? colors.lightOrange : "lightgray",
+    borderBottomWidth: 2,
+    borderRadius: 5,
+    paddingLeft: 10,
+    width: Dimensions.get("window").width * 0.8,
+    height: "10%"
   }
 });
 
-export default SignupScreen;
+export default LoginScreen;

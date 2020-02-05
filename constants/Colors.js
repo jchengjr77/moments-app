@@ -1,5 +1,6 @@
 export default {
   lightOrange: "#fbe8a6",
+  lighterOrange: "#fdfac8",
   medOrange: "#ead795",
   darkOrange: "#f4976c",
   primary: "#303c6c",

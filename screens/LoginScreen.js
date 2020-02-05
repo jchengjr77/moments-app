@@ -1,91 +1,44 @@
 /**
- * ! @Vignesh comment the file haha
+ * Login screen should contain an username and password fields only.
+ * Sends a request to the database searching for the username and password.
  */
 
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, ImageBackground, Dimensions } from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
 import AwesomeButton from "react-native-really-awesome-button";
+import {
+  TextField,
+  FilledTextField,
+  OutlinedTextField
+} from "react-native-material-textfield";
 import colors from "../constants/Colors";
 import pages from "../constants/Pages";
 import splashImg from "../assets/splash.png";
 
 const LoginScreen = props => {
-  let buttonWidth = Dimensions.get("window").width * 0.75;
+  const [value, onChangeText] = useState("");
 
-
-  const emailHandler = () => {
-    console.log("Email Button Pressed");
-  };
-
-  const facebookHandler = () => {
-    console.log("Facebook Button Pressed");
-  };
-
-  const googleHandler = () => {
-    console.log("Google Button Pressed");
-  };
-
-  const backHandler = () => {
-    console.log("Back Button Pressed");
-    props.switchHandler(pages.startPage);
+  const formatText = text => {
+    return text.replace(/[^+\d]/g, "");
   };
 
   return (
     <View style={styles.container}>
       <ImageBackground style={styles.splash} source={splashImg}>
         <View style={styles.buttonCont}>
-          <BigPrimaryButton
-            title="Email"
-            onPress={emailHandler}
-            width={buttonWidth}
-            //height = {buttonHeight}
-
+          <TextField
+            label="Username"
+            keyboardType="default"
+            formatText={formatText}
+            onSubmitEditing
           />
-          <AwesomeButton
-            backgroundColor="#3b5998"
-            backgroundDarker="#193776"
-            backgroundShadow="#8b9dc3"
-            raiseLevel={4}
-            textFontFamily="montserrat-bold"
-            textColor="#ffffff"
-            textSize={20}
-            onPress={facebookHandler}
-            width={buttonWidth}
-            //height = {buttonHeight}
-
-          >
-            Facebook
-          </AwesomeButton>
-          
-          <AwesomeButton
-            backgroundColor="#ffffff"
-            backgroundDarker="#64a7F6"
-            backgroundShadow="#eeeeee"
-            raiseLevel={4}
-            textFontFamily="montserrat-bold"
-            textColor="#333333"
-            textSize={20}
-            onPress={googleHandler}
-            width={buttonWidth}
-            //height = {buttonHeight}
-          >
-            Google
-          </AwesomeButton>
-
-          
-
-
-        </View>
-        <View>
-          <BigPrimaryButton
-            title="↤"
-            onPress={backHandler}
-            width={buttonWidth/6}
-            height = {Dimensions.get("window").height * 0.05}
-            paddingTop = {Dimensions.get("window").height / 7}
+          <OutlinedTextField
+            label="Phone number"
+            keyboardType="phone-pad"
+            formatText={formatText}
+            onChangeText={() => onChangeText(value)}
           />
-
         </View>
       </ImageBackground>
     </View>
@@ -106,7 +59,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: Dimensions.get("window").height / 2.5
   },
-
   splash: {
     alignSelf: "center",
     width: "100%",
