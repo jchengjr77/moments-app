@@ -10,14 +10,14 @@ import {
   ImageBackground,
   TextInput,
   Dimensions,
-  ScrollView,
-  KeyboardAvoidingView
+  ScrollView
 } from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
 
 import colors from "../constants/Colors";
 import pages from "../constants/Pages";
 import splashImg from "../assets/splash.png";
+import BigSecondaryButton from "../components/BigSecondaryButton";
 
 const LoginScreen = props => {
   const [email, onChangeEmail] = useState("");
@@ -26,14 +26,10 @@ const LoginScreen = props => {
   const [selected1, setSelected1] = useState(false);
   const [selected2, setSelected2] = useState(false);
   const [selected3, setSelected3] = useState(false);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [offset, setOffset] = useState(0);
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.screenContainer}
-      scrollEnabled={selected1 || selected2 || selected3}
-      contentOffset={offset}
-    >
+    <View style={styles.screenContainer} top={offset} bottom={offset}>
       <ImageBackground style={styles.splash} source={splashImg}>
         <View style={styles.buttonCont}>
           <TextInput
@@ -47,11 +43,11 @@ const LoginScreen = props => {
             }}
             onFocus={() => {
               setSelected1(true);
-              setOffset({ x: 0, y: 150 });
+              setOffset(-175);
             }}
             onBlur={() => {
               setSelected1(false);
-              setOffset({ x: 0, y: 0 });
+              setOffset(0);
             }}
           />
           <TextInput
@@ -65,11 +61,11 @@ const LoginScreen = props => {
             }}
             onFocus={() => {
               setSelected2(true);
-              setOffset({ x: 0, y: 150 });
+              setOffset(-175);
             }}
             onBlur={() => {
               setSelected2(false);
-              setOffset({ x: 0, y: 0 });
+              setOffset(0);
             }}
           />
           <TextInput
@@ -83,31 +79,40 @@ const LoginScreen = props => {
             }}
             onFocus={() => {
               setSelected3(true);
-              setOffset({ x: 0, y: 150 });
+              setOffset(-175);
             }}
             onBlur={() => {
               setSelected3(false);
-              setOffset({ x: 0, y: 0 });
+              setOffset(0);
             }}
             secureTextEntry // because it is a password
             selectTextOnFocus
           />
-          <BigPrimaryButton
-            title="Submit"
-            onPress={() => {
-              console.log(
-                "Signup with username: " +
-                  usrvalue +
-                  ", password: " +
-                  pwvalue +
-                  ", email: " +
-                  email
-              );
-            }}
-          />
+          <View style={styles.bottomButtons}>
+            <BigPrimaryButton
+              title="Submit"
+              onPress={() => {
+                console.log(
+                  "Signup with username: " +
+                    usrvalue +
+                    ", password: " +
+                    pwvalue +
+                    ", email: " +
+                    email
+                );
+              }}
+            />
+            <BigSecondaryButton
+              title="Back"
+              onPress={() => {
+                console.log("going back");
+                props.switchHandler(pages.startPage);
+              }}
+            />
+          </View>
         </View>
       </ImageBackground>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -137,6 +142,12 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     width: Dimensions.get("window").width * 0.8,
     height: "10%"
+  },
+  bottomButtons: {
+    width: Dimensions.get("window").width * 0.8,
+    flexDirection: "row-reverse",
+    alignItems: "center",
+    justifyContent: "space-between"
   }
 });
 
