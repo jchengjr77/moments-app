@@ -4,23 +4,27 @@ import {
   Image,
   Dimensions,
   StyleSheet,
-  TouchableOpacity
+  TouchableHighlight
 } from "react-native";
 
-// Icon imports
 import namebar from "../assets/splash-basic-removebg.png";
-// End
+import pages from "../constants/Pages";
 
 const TopBar = props => {
   return (
     <View style={styles.topBar}>
-      <View style={styles.nameArea}>
+      <TouchableHighlight
+        onPress={() => {
+          props.switchHandler(pages.startPage);
+        }}
+        style={styles.nameArea}
+      >
         <Image
           source={namebar}
           style={styles.nameButton}
           resizeMode="contain"
         />
-      </View>
+      </TouchableHighlight>
     </View>
   );
 };
