@@ -10,7 +10,7 @@ import {
   TextInput,
   Dimensions,
   Alert,
-  Vibration
+  Text
 } from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
 import BigSecondaryButton from "../components/BigSecondaryButton";
@@ -59,44 +59,66 @@ const LoginScreen = props => {
     <View style={styles.screenContainer} top={offset} bottom={offset}>
       <ImageBackground style={styles.splash} source={splashImg}>
         <View style={styles.buttonCont}>
-          <TextInput
-            value={email}
-            placeholder="Email"
-            placeholderTextColor="#AAAAAA"
-            onChangeText={text => onChangeTextUsr(text)}
-            style={{
-              ...styles.inputField,
-              backgroundColor: usrSel ? "#F0F2F4" : "#DDDDDD"
-            }}
-            onFocus={() => {
-              setUsrSel(true);
-              setOffset(-100);
-            }}
-            onBlur={() => {
-              setUsrSel(false);
-              setOffset(0);
-            }}
-          />
-          <TextInput
-            defaultValue={pwvalue}
-            placeholder="Password"
-            placeholderTextColor="#AAAAAA"
-            onChangeText={text => onChangeTextPw(text)}
-            style={{
-              ...styles.inputField,
-              backgroundColor: pwSel ? "#F0F2F4" : "#DDDDDD"
-            }}
-            onFocus={() => {
-              setPwSel(true);
-              setOffset(-100);
-            }}
-            onBlur={() => {
-              setPwSel(false);
-              setOffset(0);
-            }}
-            secureTextEntry // because it is a password
-            selectTextOnFocus
-          />
+          <View>
+            <TextInput
+              value={email}
+              placeholder="Email"
+              placeholderTextColor="#AAAAAA"
+              onChangeText={text => onChangeTextUsr(text)}
+              style={{
+                ...styles.inputField,
+                backgroundColor: usrSel ? "#F0F2F4" : "#DDDDDD"
+              }}
+              onFocus={() => {
+                setUsrSel(true);
+                setOffset(-100);
+              }}
+              onBlur={() => {
+                setUsrSel(false);
+                setOffset(0);
+              }}
+              selectTextOnFocus
+            />
+          </View>
+          <View>
+            <TextInput
+              defaultValue={pwvalue}
+              placeholder="Password"
+              placeholderTextColor="#AAAAAA"
+              onChangeText={text => onChangeTextPw(text)}
+              style={{
+                ...styles.inputField,
+                backgroundColor: pwSel ? "#F0F2F4" : "#DDDDDD"
+              }}
+              onFocus={() => {
+                setPwSel(true);
+                setOffset(-100);
+              }}
+              onBlur={() => {
+                setPwSel(false);
+                setOffset(0);
+              }}
+              secureTextEntry // because it is a password
+              selectTextOnFocus
+            />
+            <Text
+              style={styles.linkStyle}
+              onPress={() => {
+                auth
+                  .sendPasswordResetEmail(email)
+                  .then(() => {
+                    console.log("Sent reset email to: " + email);
+                    Alert.alert("Password reset email sent to " + email);
+                  })
+                  .catch(error => {
+                    console.log("ERROR: could not send password reset email");
+                    Alert.alert("Reset failed.");
+                  });
+              }}
+            >
+              Reset Password
+            </Text>
+          </View>
           <View style={styles.bottomButtons}>
             <BigPrimaryButton
               title="Submit"
@@ -142,13 +164,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 10,
     width: Dimensions.get("window").width * 0.8,
-    height: "10%"
+    height: 30
   },
   bottomButtons: {
     width: Dimensions.get("window").width * 0.8,
     flexDirection: "row-reverse",
     alignItems: "center",
     justifyContent: "space-between"
+  },
+  linkStyle: {
+    textDecorationLine: "underline",
+    color: "darkblue",
+    padding: 5
   }
 });
 
