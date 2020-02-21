@@ -28,7 +28,7 @@ const addUser = (usr, pw, email) => {
     password: pw,
     email: email
   });
-  Alert.alert("New user added: " + usr);
+  Alert.alert("Welcome, " + usr);
 };
 
 const LoginScreen = props => {
@@ -104,14 +104,6 @@ const LoginScreen = props => {
             <BigPrimaryButton
               title="Submit"
               onPress={() => {
-                console.log(
-                  "Signup with username: " +
-                    usrvalue +
-                    ", password: " +
-                    pwvalue +
-                    ", email: " +
-                    email
-                );
                 addUser(usrvalue, pwvalue, email);
                 props.switchHandler(pages.homePage);
               }}
@@ -119,7 +111,6 @@ const LoginScreen = props => {
             <BigSecondaryButton
               title="Back"
               onPress={() => {
-                console.log("going back");
                 props.switchHandler(pages.startPage);
               }}
             />

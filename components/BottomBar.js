@@ -7,7 +7,6 @@ import pages from "../constants/Pages";
 import bookIcon from "../assets/feathericons/book-open.png";
 import starIcon from "../assets/feathericons/star.png";
 import friendsIcon from "../assets/feathericons/users.png";
-import FriendScreen from "../screens/FriendScreen";
 // End
 
 /**
@@ -29,7 +28,6 @@ import FriendScreen from "../screens/FriendScreen";
 
 const BottomBar = props => {
   const toFriendsHandler = active => {
-    console.log("Friends Button Pressed");
     if (active) {
       props.switchHandler(pages.homePage);
     } else {
@@ -38,7 +36,6 @@ const BottomBar = props => {
   };
 
   const toLibHandler = active => {
-    console.log("Library Button Pressed");
     if (active) {
       props.switchHandler(pages.homePage);
     } else {
@@ -47,7 +44,6 @@ const BottomBar = props => {
   };
 
   const toFavsHandler = active => {
-    console.log("Favorites Button Pressed");
     if (active) {
       props.switchHandler(pages.homePage);
     } else {
@@ -70,7 +66,6 @@ const BottomBar = props => {
       favActive = true;
       break;
     default:
-      console.log("Bottom Bar Inactive.");
       break;
   }
 
@@ -104,7 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
-    width: Dimensions.get("window").width 
+    width: Dimensions.get("window").width
   }
 });
 

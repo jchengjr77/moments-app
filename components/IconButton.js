@@ -20,7 +20,7 @@ const IconButton = props => {
 
   if (props.active) {
     activeLevel = 1;
-    bgColor = colors.medOrange;
+    bgColor = colors.darkIce;
   }
 
   return (

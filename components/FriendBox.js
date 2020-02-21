@@ -34,13 +34,15 @@ const FriendBox = props => {
           <Image
             // resizeMode="cover" // Note: profile pictures should enforce square aspect ratio because of "cover" resize mode
             style={styles.imgStyles}
-            source={{uri : props.profPic}}
+            source={{ uri: props.profPic }}
           />
         </View>
         {/* Text Styles */}
         <View style={styles.textCont} flex={9}>
           <Text style={styles.nameStyles}>{props.name}</Text>
-          <Text style={styles.mutualStyles}>{props.numFriends + " mutual friends"}</Text>
+          <Text style={styles.mutualStyles}>
+            {props.numFriends + " mutual friends"}
+          </Text>
         </View>
         {/* Send Love */}
         <View style={styles.builtinCont}>

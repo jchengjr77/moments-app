@@ -24,13 +24,10 @@ const StartScreen = props => {
   let buttonWidth = Dimensions.get("window").width * 0.75;
 
   const loginHandler = () => {
-    console.log("Login Button Pressed");
-    // ! This should be going to pages.loginPage
     props.switchHandler(pages.loginPage);
   };
 
   const signupHandler = () => {
-    console.log("Signup Button Pressed");
     props.switchHandler(pages.signupPage);
   };
 

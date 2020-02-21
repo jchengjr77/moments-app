@@ -37,12 +37,7 @@ const LoginScreen = props => {
     userRef.on("value", users => {
       users.forEach(user => {
         const creds = user.val();
-        console.log("Creds username: ", creds.username);
-        console.log("Input username: ", usr);
-        console.log("Creds password: ", creds.password);
-        console.log("Input password: ", pw);
         if (creds.username === usr && creds.password === pw) {
-          console.log("Authenticated");
           props.switchHandler(pages.homePage);
           auth = true;
         }
@@ -99,16 +94,12 @@ const LoginScreen = props => {
             <BigPrimaryButton
               title="Submit"
               onPress={() => {
-                console.log(
-                  "Login with username: " + usrvalue + ", password: " + pwvalue
-                );
                 userAuth(usrvalue, pwvalue);
               }}
             />
             <BigSecondaryButton
               title="Back"
               onPress={() => {
-                console.log("going back");
                 props.switchHandler(pages.startPage);
               }}
             />
