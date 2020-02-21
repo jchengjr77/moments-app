@@ -1,6 +1,6 @@
 /**
- * Login screen should contain an username and password fields only.
- * Sends a request to the database searching for the username and password.
+ * Signup screen should contain an email, username and password field.
+ * Posts the new user data to the database.
  */
 
 import React, { useState } from "react";
@@ -9,14 +9,27 @@ import {
   StyleSheet,
   ImageBackground,
   TextInput,
-  Dimensions
+  Dimensions,
+  Alert
 } from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
 import BigSecondaryButton from "../components/BigSecondaryButton";
 
 import colors from "../constants/Colors";
 import pages from "../constants/Pages";
-import splashImg from "../assets/splash.png";
+import splashImg from "../assets/name.png";
+
+import { db } from "../config";
+
+// Function to add user to the database
+const addUser = (usr, pw, email) => {
+  db.ref("/users").push({
+    username: usr,
+    password: pw,
+    email: email
+  });
+  Alert.alert("Welcome, " + usr);
+};
 
 const LoginScreen = props => {
   const [email, onChangeEmail] = useState("");
@@ -91,20 +104,13 @@ const LoginScreen = props => {
             <BigPrimaryButton
               title="Submit"
               onPress={() => {
-                console.log(
-                  "Signup with username: " +
-                    usrvalue +
-                    ", password: " +
-                    pwvalue +
-                    ", email: " +
-                    email
-                );
+                addUser(usrvalue, pwvalue, email);
+                props.switchHandler(pages.homePage);
               }}
             />
             <BigSecondaryButton
               title="Back"
               onPress={() => {
-                console.log("going back");
                 props.switchHandler(pages.startPage);
               }}
             />

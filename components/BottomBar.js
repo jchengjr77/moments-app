@@ -5,9 +5,8 @@ import pages from "../constants/Pages";
 
 // Icon imports
 import bookIcon from "../assets/feathericons/book-open.png";
-import starIcon from "../assets/feathericons/star.png";
+import plusIcon from "../assets/feathericons/plus.png";
 import friendsIcon from "../assets/feathericons/users.png";
-import FriendScreen from "../screens/FriendScreen";
 // End
 
 /**
@@ -17,7 +16,6 @@ import FriendScreen from "../screens/FriendScreen";
  *      highlighted. There are three options that are scanned for:
  *          - "friends"
  *          - "lib"
- *          - "favs"
  *      Depending on which string is fed in as the 'active' prop, then
  *      the buttons on the bottom will highlight differently.
  *  @param props.switchHandler
@@ -29,7 +27,6 @@ import FriendScreen from "../screens/FriendScreen";
 
 const BottomBar = props => {
   const toFriendsHandler = active => {
-    console.log("Friends Button Pressed");
     if (active) {
       props.switchHandler(pages.homePage);
     } else {
@@ -38,7 +35,6 @@ const BottomBar = props => {
   };
 
   const toLibHandler = active => {
-    console.log("Library Button Pressed");
     if (active) {
       props.switchHandler(pages.homePage);
     } else {
@@ -46,18 +42,8 @@ const BottomBar = props => {
     }
   };
 
-  const toFavsHandler = active => {
-    console.log("Favorites Button Pressed");
-    if (active) {
-      props.switchHandler(pages.homePage);
-    } else {
-      props.switchHandler(pages.favsPage);
-    }
-  };
-
   let friendsActive,
-    libActive,
-    favActive = false;
+    libActive = false;
 
   switch (props.active) {
     case "friends":
@@ -66,11 +52,7 @@ const BottomBar = props => {
     case "lib":
       libActive = true;
       break;
-    case "fav":
-      favActive = true;
-      break;
     default:
-      console.log("Bottom Bar Inactive.");
       break;
   }
 
@@ -82,17 +64,12 @@ const BottomBar = props => {
         onPress={() => toFriendsHandler(friendsActive)}
         active={friendsActive}
       />
+      <IconButton width={Dimensions.get("window").width * 0.3} img={plusIcon} />
       <IconButton
         width={Dimensions.get("window").width * 0.3}
         img={bookIcon}
         onPress={() => toLibHandler(libActive)}
         active={libActive}
-      />
-      <IconButton
-        width={Dimensions.get("window").width * 0.3}
-        img={starIcon}
-        onPress={() => toFavsHandler(favActive)}
-        active={favActive}
       />
     </View>
   );
@@ -104,7 +81,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
-    width: Dimensions.get("window").width 
+    width: Dimensions.get("window").width
   }
 });
 

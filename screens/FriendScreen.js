@@ -17,7 +17,7 @@ import fakeData from "../data/FriendData.json";
 const FriendScreen = props => {
   return (
     <View style={styles.screen}>
-      <TopBar />
+      <TopBar switchHandler={props.switchHandler} favActive={false} />
       <View style={styles.friendList}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View flexDirection="column">

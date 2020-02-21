@@ -1,6 +1,6 @@
-/**
- * ! @Vignesh comment the file haha
- */
+/*
+  Login fields with username and password. Validated through the firebase db
+*/
 
 import React, { useState } from "react";
 import {
@@ -8,14 +8,18 @@ import {
   StyleSheet,
   ImageBackground,
   TextInput,
-  Dimensions
+  Dimensions,
+  Alert,
+  Vibration
 } from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
 import BigSecondaryButton from "../components/BigSecondaryButton";
 
 import colors from "../constants/Colors";
 import pages from "../constants/Pages";
-import splashImg from "../assets/splash.png";
+import splashImg from "../assets/name.png";
+
+import { db } from "../config";
 
 const LoginScreen = props => {
   const [usrvalue, onChangeTextUsr] = useState("");
@@ -23,6 +27,28 @@ const LoginScreen = props => {
   const [usrSel, setUsrSel] = useState(false);
   const [pwSel, setPwSel] = useState(false);
   const [offset, setOffset] = useState(0);
+
+  // Check login credentials
+  const userAuth = (usr, pw) => {
+    // Grab users reference from firebase
+    let userRef = db.ref("/users");
+    let auth = false;
+
+    // Extract all users from userRef and check credentials
+    userRef.on("value", users => {
+      users.forEach(user => {
+        const creds = user.val();
+        if (creds.username === usr && creds.password === pw) {
+          props.switchHandler(pages.homePage);
+          auth = true;
+        }
+      });
+      if (auth == false) {
+        Alert.alert("Username and/or Password do not match");
+        Vibration.vibrate(200);
+      }
+    });
+  };
 
   return (
     <View style={styles.screenContainer} top={offset} bottom={offset}>
@@ -70,16 +96,12 @@ const LoginScreen = props => {
             <BigPrimaryButton
               title="Submit"
               onPress={() => {
-                console.log(
-                  "Signup with username: " + usrvalue + ", password: " + pwvalue
-                );
-                props.switchHandler(pages.homePage);
+                userAuth(usrvalue, pwvalue);
               }}
             />
             <BigSecondaryButton
               title="Back"
               onPress={() => {
-                console.log("going back");
                 props.switchHandler(pages.startPage);
               }}
             />

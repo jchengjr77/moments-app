@@ -18,19 +18,16 @@ import BigPrimaryButton from "../components/BigPrimaryButton";
 import BigSecondaryButton from "../components/BigSecondaryButton";
 import colors from "../constants/Colors";
 import pages from "../constants/Pages";
-import splashImg from "../assets/splash.png";
+import splashImg from "../assets/name.png";
 
 const StartScreen = props => {
   let buttonWidth = Dimensions.get("window").width * 0.75;
 
   const loginHandler = () => {
-    console.log("Login Button Pressed");
-    // ! This should be going to pages.loginPage
     props.switchHandler(pages.loginPage);
   };
 
   const signupHandler = () => {
-    console.log("Signup Button Pressed");
     props.switchHandler(pages.signupPage);
   };
 

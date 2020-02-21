@@ -14,16 +14,13 @@ import sendLove from "../assets/feathericons/heart.png";
 const FriendBox = props => {
   const friendHandler = name => {
     console.log("Clicked on friend: " + name);
-    //setCurrPage("");
   };
   const deleteHandler = name => {
     console.log("Deleted Friend: " + name);
-    //setCurrPage("");
   };
 
   const loveHandler = name => {
     console.log("Sent Love to Friend: " + name);
-    //setCurrPage("");
   };
 
   return (
@@ -34,13 +31,15 @@ const FriendBox = props => {
           <Image
             // resizeMode="cover" // Note: profile pictures should enforce square aspect ratio because of "cover" resize mode
             style={styles.imgStyles}
-            source={{uri : props.profPic}}
+            source={{ uri: props.profPic }}
           />
         </View>
         {/* Text Styles */}
         <View style={styles.textCont} flex={9}>
           <Text style={styles.nameStyles}>{props.name}</Text>
-          <Text style={styles.mutualStyles}>{props.numFriends + " mutual friends"}</Text>
+          <Text style={styles.mutualStyles}>
+            {props.numFriends + " mutual friends"}
+          </Text>
         </View>
         {/* Send Love */}
         <View style={styles.builtinCont}>

@@ -18,11 +18,6 @@ const IconButton = props => {
   var bgColor = colors.lightOrange;
   var activeLevel = 3;
 
-  if (props.active) {
-    activeLevel = 1;
-    bgColor = colors.medOrange;
-  }
-
   return (
     <AwesomeButton
       backgroundColor={bgColor}
@@ -30,6 +25,9 @@ const IconButton = props => {
       width={props.width}
       height={props.height}
       onPress={props.onPress}
+      borderRadius={10}
+      borderWidth={props.active ? 3 : 0}
+      borderColor={colors.darkOrange}
     >
       <Image source={props.img} />
     </AwesomeButton>

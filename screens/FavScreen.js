@@ -1,16 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import TopBar from "../components/TopBar";
 import BottomBar from "../components/BottomBar";
 
-const HomeScreen = props => {
+const FavScreen = props => {
   return (
     <View style={styles.screen}>
-      <TopBar switchHandler={props.switchHandler} favActive={false} />
+      <TopBar switchHandler={props.switchHandler} favActive={true} />
       <View style={styles.mainCard}>
-        <Text>Main Card</Text>
+        <Text>Favorites Screen</Text>
       </View>
-      <BottomBar switchHandler={props.switchHandler} active="home" />
+      <BottomBar switchHandler={props.switchHandler} active="fav" />
     </View>
   );
 };
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeScreen;
+export default FavScreen;

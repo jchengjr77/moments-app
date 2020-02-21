@@ -9,6 +9,9 @@ import HomeScreen from "./screens/HomeScreen";
 import pages from "./constants/Pages";
 import FriendScreen from "./screens/FriendScreen";
 import LibraryScreen from "./screens/LibraryScreen";
+import FavScreen from "./screens/FavScreen";
+
+import colors from "./constants/Colors";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -26,10 +29,6 @@ export default function App() {
    * currPage also scans for that specific key string.
    */
   const handleSwitchPages = keyString => {
-    /**
-     * ! This needs some error checking
-     */
-    console.log("Switching to page: " + keyString);
     setCurrPage(keyString);
   };
 
@@ -71,6 +70,8 @@ export default function App() {
     content = <FriendScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.libPage) {
     content = <LibraryScreen switchHandler={handleSwitchPages} />;
+  } else if (currPage === pages.favPage) {
+    content = <FavScreen switchHandler={handleSwitchPages} />;
   }
 
   if (loaded) {
@@ -90,6 +91,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   screen: {
-    flex: 1
+    flex: 1,
+    backgroundColor: colors.allBackground
   }
 });
