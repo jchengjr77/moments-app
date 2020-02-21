@@ -16,7 +16,6 @@ import friendsIcon from "../assets/feathericons/users.png";
  *      highlighted. There are three options that are scanned for:
  *          - "friends"
  *          - "lib"
- *          - "favs"
  *      Depending on which string is fed in as the 'active' prop, then
  *      the buttons on the bottom will highlight differently.
  *  @param props.switchHandler

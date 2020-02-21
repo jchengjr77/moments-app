@@ -13,5 +13,6 @@ export default {
   secondaryButton: "#303c6c",
   secondaryButtonDark: "#101a4a",
   secondaryButtonShadow: "#525e8e",
-  splashBackground: "#F0F2F4"
+  splashBackground: "#F0F2F4",
+  allBackground: "#F0F0F0"
 };

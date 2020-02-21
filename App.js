@@ -11,6 +11,8 @@ import FriendScreen from "./screens/FriendScreen";
 import LibraryScreen from "./screens/LibraryScreen";
 import FavScreen from "./screens/FavScreen";
 
+import colors from "./constants/Colors";
+
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [currPage, setCurrPage] = useState(pages.startPage);
@@ -89,6 +91,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   screen: {
-    flex: 1
+    flex: 1,
+    backgroundColor: colors.allBackground
   }
 });
