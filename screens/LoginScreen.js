@@ -8,7 +8,8 @@ import {
   StyleSheet,
   ImageBackground,
   TextInput,
-  Dimensions
+  Dimensions,
+  Alert
 } from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
 import BigSecondaryButton from "../components/BigSecondaryButton";
@@ -17,12 +18,40 @@ import colors from "../constants/Colors";
 import pages from "../constants/Pages";
 import splashImg from "../assets/splash.png";
 
+import { db } from "../config";
+
 const LoginScreen = props => {
   const [usrvalue, onChangeTextUsr] = useState("");
   const [pwvalue, onChangeTextPw] = useState("");
   const [usrSel, setUsrSel] = useState(false);
   const [pwSel, setPwSel] = useState(false);
   const [offset, setOffset] = useState(0);
+
+  // Check login credentials
+  const userAuth = (usr, pw) => {
+    // Grab users reference from firebase
+    let userRef = db.ref("/users");
+    let auth = false;
+
+    // Extract all users from userRef and check credentials
+    userRef.on("value", users => {
+      users.forEach(user => {
+        const creds = user.val();
+        console.log("Creds username: ", creds.username);
+        console.log("Input username: ", usr);
+        console.log("Creds password: ", creds.password);
+        console.log("Input password: ", pw);
+        if (creds.username === usr && creds.password === pw) {
+          console.log("Authenticated");
+          props.switchHandler(pages.homePage);
+          auth = true;
+        }
+      });
+    });
+    if (auth == false) {
+      Alert.alert("Username and/or Password do not match");
+    }
+  };
 
   return (
     <View style={styles.screenContainer} top={offset} bottom={offset}>
@@ -71,9 +100,9 @@ const LoginScreen = props => {
               title="Submit"
               onPress={() => {
                 console.log(
-                  "Signup with username: " + usrvalue + ", password: " + pwvalue
+                  "Login with username: " + usrvalue + ", password: " + pwvalue
                 );
-                props.switchHandler(pages.homePage);
+                userAuth(usrvalue, pwvalue);
               }}
             />
             <BigSecondaryButton
