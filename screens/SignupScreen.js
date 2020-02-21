@@ -9,23 +9,22 @@ import {
   StyleSheet,
   ImageBackground,
   TextInput,
-  Dimensions,
-  ScrollView
+  Dimensions
 } from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
+import BigSecondaryButton from "../components/BigSecondaryButton";
 
 import colors from "../constants/Colors";
 import pages from "../constants/Pages";
 import splashImg from "../assets/splash.png";
-import BigSecondaryButton from "../components/BigSecondaryButton";
 
 const LoginScreen = props => {
   const [email, onChangeEmail] = useState("");
   const [usrvalue, onChangeTextUsr] = useState("");
   const [pwvalue, onChangeTextPw] = useState("");
-  const [selected1, setSelected1] = useState(false);
-  const [selected2, setSelected2] = useState(false);
-  const [selected3, setSelected3] = useState(false);
+  const [emailSel, setEmailSel] = useState(false);
+  const [usrSel, setUsrSel] = useState(false);
+  const [pwSel, setPwSel] = useState(false);
   const [offset, setOffset] = useState(0);
 
   return (
@@ -39,14 +38,14 @@ const LoginScreen = props => {
             onChangeText={text => onChangeEmail(text)}
             style={{
               ...styles.inputField,
-              backgroundColor: selected1 ? "#F0F2F4" : "#DDDDDD"
+              backgroundColor: emailSel ? "#F0F2F4" : "#DDDDDD"
             }}
             onFocus={() => {
-              setSelected1(true);
+              setEmailSel(true);
               setOffset(-175);
             }}
             onBlur={() => {
-              setSelected1(false);
+              setEmailSel(false);
               setOffset(0);
             }}
           />
@@ -57,14 +56,14 @@ const LoginScreen = props => {
             onChangeText={text => onChangeTextUsr(text)}
             style={{
               ...styles.inputField,
-              backgroundColor: selected2 ? "#F0F2F4" : "#DDDDDD"
+              backgroundColor: usrSel ? "#F0F2F4" : "#DDDDDD"
             }}
             onFocus={() => {
-              setSelected2(true);
+              setUsrSel(true);
               setOffset(-175);
             }}
             onBlur={() => {
-              setSelected2(false);
+              setUsrSel(false);
               setOffset(0);
             }}
           />
@@ -75,14 +74,14 @@ const LoginScreen = props => {
             onChangeText={text => onChangeTextPw(text)}
             style={{
               ...styles.inputField,
-              backgroundColor: selected3 ? "#F0F2F4" : "#DDDDDD"
+              backgroundColor: pwSel ? "#F0F2F4" : "#DDDDDD"
             }}
             onFocus={() => {
-              setSelected3(true);
+              setPwSel(true);
               setOffset(-175);
             }}
             onBlur={() => {
-              setSelected3(false);
+              setPwSel(false);
               setOffset(0);
             }}
             secureTextEntry // because it is a password

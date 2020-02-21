@@ -1,37 +1,30 @@
 import React from "react";
-import { View, Image, Dimensions, StyleSheet } from "react-native";
-import IconButton from "./IconButton";
+import {
+  View,
+  Image,
+  Dimensions,
+  StyleSheet,
+  TouchableHighlight
+} from "react-native";
 
-// Icon imports
-import cameraIcon from "../assets/feathericons/camera.png";
-import menuIcon from "../assets/feathericons/menu.png";
 import namebar from "../assets/splash-basic-removebg.png";
-// End
+import pages from "../constants/Pages";
 
 const TopBar = props => {
   return (
     <View style={styles.topBar}>
-      <View style={styles.starButton}>
-        <IconButton
-          width={Dimensions.get("window").width * 0.1}
-          height={Dimensions.get("window").width * 0.1}
-          img={menuIcon}
-        />
-      </View>
-      <View style={styles.nameArea}>
+      <TouchableHighlight
+        onPress={() => {
+          props.switchHandler(pages.startPage);
+        }}
+        style={styles.nameArea}
+      >
         <Image
           source={namebar}
           style={styles.nameButton}
           resizeMode="contain"
         />
-      </View>
-      <View style={styles.cameraButton}>
-        <IconButton
-          width={Dimensions.get("window").width * 0.1}
-          height={Dimensions.get("window").width * 0.1}
-          img={cameraIcon}
-        />
-      </View>
+      </TouchableHighlight>
     </View>
   );
 };
@@ -45,27 +38,18 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height * 0.2
   },
-  starButton: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around"
-  },
   nameArea: {
-    flex: 3,
+    flex: 1,
     alignItems: "center",
-    paddingLeft: 10
+    justifyContent: "center",
+    marginLeft: 65,
+    marginRight: 65,
+    marginTop: 20
   },
   nameButton: {
     flex: 1,
     width: "100%",
     height: undefined
-  },
-  cameraButton: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around"
   }
 });
 

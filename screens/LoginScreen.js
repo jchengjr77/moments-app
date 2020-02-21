@@ -2,90 +2,88 @@
  * ! @Vignesh comment the file haha
  */
 
-import React from "react";
-import { View, StyleSheet, ImageBackground, Dimensions } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  TextInput,
+  Dimensions
+} from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
-import AwesomeButton from "react-native-really-awesome-button";
+import BigSecondaryButton from "../components/BigSecondaryButton";
+
 import colors from "../constants/Colors";
 import pages from "../constants/Pages";
 import splashImg from "../assets/splash.png";
 
 const LoginScreen = props => {
-  let buttonWidth = Dimensions.get("window").width * 0.75;
-
-
-  const emailHandler = () => {
-    console.log("Email Button Pressed");
-  };
-
-  const facebookHandler = () => {
-    console.log("Facebook Button Pressed");
-  };
-
-  const googleHandler = () => {
-    console.log("Google Button Pressed");
-  };
-
-  const backHandler = () => {
-    console.log("Back Button Pressed");
-    props.switchHandler(pages.startPage);
-  };
+  const [usrvalue, onChangeTextUsr] = useState("");
+  const [pwvalue, onChangeTextPw] = useState("");
+  const [usrSel, setUsrSel] = useState(false);
+  const [pwSel, setPwSel] = useState(false);
+  const [offset, setOffset] = useState(0);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.screenContainer} top={offset} bottom={offset}>
       <ImageBackground style={styles.splash} source={splashImg}>
         <View style={styles.buttonCont}>
-          <BigPrimaryButton
-            title="Email"
-            onPress={emailHandler}
-            width={buttonWidth}
-            //height = {buttonHeight}
-
+          <TextInput
+            value={usrvalue}
+            placeholder="Username"
+            placeholderTextColor="#AAAAAA"
+            onChangeText={text => onChangeTextUsr(text)}
+            style={{
+              ...styles.inputField,
+              backgroundColor: usrSel ? "#F0F2F4" : "#DDDDDD"
+            }}
+            onFocus={() => {
+              setUsrSel(true);
+              setOffset(-100);
+            }}
+            onBlur={() => {
+              setUsrSel(false);
+              setOffset(0);
+            }}
           />
-          <AwesomeButton
-            backgroundColor="#3b5998"
-            backgroundDarker="#193776"
-            backgroundShadow="#8b9dc3"
-            raiseLevel={4}
-            textFontFamily="montserrat-bold"
-            textColor="#ffffff"
-            textSize={20}
-            onPress={facebookHandler}
-            width={buttonWidth}
-            //height = {buttonHeight}
-
-          >
-            Facebook
-          </AwesomeButton>
-          
-          <AwesomeButton
-            backgroundColor="#ffffff"
-            backgroundDarker="#64a7F6"
-            backgroundShadow="#eeeeee"
-            raiseLevel={4}
-            textFontFamily="montserrat-bold"
-            textColor="#333333"
-            textSize={20}
-            onPress={googleHandler}
-            width={buttonWidth}
-            //height = {buttonHeight}
-          >
-            Google
-          </AwesomeButton>
-
-          
-
-
-        </View>
-        <View>
-          <BigPrimaryButton
-            title="↤"
-            onPress={backHandler}
-            width={buttonWidth/6}
-            height = {Dimensions.get("window").height * 0.05}
-            paddingTop = {Dimensions.get("window").height / 7}
+          <TextInput
+            defaultValue={pwvalue}
+            placeholder="Password"
+            placeholderTextColor="#AAAAAA"
+            onChangeText={text => onChangeTextPw(text)}
+            style={{
+              ...styles.inputField,
+              backgroundColor: pwSel ? "#F0F2F4" : "#DDDDDD"
+            }}
+            onFocus={() => {
+              setPwSel(true);
+              setOffset(-100);
+            }}
+            onBlur={() => {
+              setPwSel(false);
+              setOffset(0);
+            }}
+            secureTextEntry // because it is a password
+            selectTextOnFocus
           />
-
+          <View style={styles.bottomButtons}>
+            <BigPrimaryButton
+              title="Submit"
+              onPress={() => {
+                console.log(
+                  "Signup with username: " + usrvalue + ", password: " + pwvalue
+                );
+                props.switchHandler(pages.homePage);
+              }}
+            />
+            <BigSecondaryButton
+              title="Back"
+              onPress={() => {
+                console.log("going back");
+                props.switchHandler(pages.startPage);
+              }}
+            />
+          </View>
         </View>
       </ImageBackground>
     </View>
@@ -93,7 +91,7 @@ const LoginScreen = props => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  screenContainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
@@ -106,11 +104,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: Dimensions.get("window").height / 2.5
   },
-
   splash: {
     alignSelf: "center",
     width: "100%",
     height: "75%"
+  },
+  inputField: {
+    borderColor: colors.primary,
+    borderBottomWidth: 2,
+    borderRadius: 5,
+    paddingLeft: 10,
+    width: Dimensions.get("window").width * 0.8,
+    height: "10%"
+  },
+  bottomButtons: {
+    width: Dimensions.get("window").width * 0.8,
+    flexDirection: "row-reverse",
+    alignItems: "center",
+    justifyContent: "space-between"
   }
 });
 

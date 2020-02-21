@@ -59,7 +59,6 @@ export default function App() {
   /**
    * If statement controlling page display. It's gonna get big.
    */
-  // ! Temporary assignments
   if (currPage === pages.startPage) {
     content = <StartScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.signupPage) {
