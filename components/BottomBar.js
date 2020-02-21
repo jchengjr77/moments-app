@@ -47,7 +47,7 @@ const BottomBar = props => {
     if (active) {
       props.switchHandler(pages.homePage);
     } else {
-      props.switchHandler(pages.favsPage);
+      props.switchHandler(pages.favPage);
     }
   };
 

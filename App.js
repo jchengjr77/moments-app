@@ -9,6 +9,7 @@ import HomeScreen from "./screens/HomeScreen";
 import pages from "./constants/Pages";
 import FriendScreen from "./screens/FriendScreen";
 import LibraryScreen from "./screens/LibraryScreen";
+import FavScreen from "./screens/FavScreen";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -71,6 +72,8 @@ export default function App() {
     content = <FriendScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.libPage) {
     content = <LibraryScreen switchHandler={handleSwitchPages} />;
+  } else if (currPage === pages.favPage) {
+    content = <FavScreen switchHandler={handleSwitchPages} />;
   }
 
   if (loaded) {
