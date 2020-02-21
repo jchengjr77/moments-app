@@ -2,7 +2,7 @@
   Login fields with username and password. Validated through the firebase db
 */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -27,6 +27,15 @@ const LoginScreen = props => {
   const [usrSel, setUsrSel] = useState(false);
   const [pwSel, setPwSel] = useState(false);
   const [offset, setOffset] = useState(0);
+
+  // If a user is already logged in, then just redirect them to Home
+  useEffect(() => {
+    let user = auth.currentUser;
+    if (user != null) {
+      console.log("AutoLogin successful for: " + email);
+      props.switchHandler(pages.homePage);
+    }
+  });
 
   // Check login credentials
   const userAuth = (email, pw) => {

@@ -16,8 +16,6 @@ const HomeScreen = props => {
       .orderByChild("email")
       .equalTo(user.email)
       .on("child_added", data => {
-        console.log("Key: " + data.key);
-        console.log("Username: " + data.val().username);
         setUsername(data.val().username);
       });
   });
