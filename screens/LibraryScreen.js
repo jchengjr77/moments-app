@@ -6,7 +6,7 @@ import BottomBar from "../components/BottomBar";
 const LibraryScreen = props => {
   return (
     <View style={styles.screen}>
-      <TopBar />
+      <TopBar switchHandler={props.switchHandler} favActive={false} />
       <View style={styles.mainCard}>
         <Text>Library Screen</Text>
       </View>

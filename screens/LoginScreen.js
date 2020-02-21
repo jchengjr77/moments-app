@@ -1,6 +1,6 @@
-/**
- * ! @Vignesh comment the file haha
- */
+/*
+  Login fields with username and password. Validated through the firebase db
+*/
 
 import React, { useState } from "react";
 import {
@@ -9,14 +9,15 @@ import {
   ImageBackground,
   TextInput,
   Dimensions,
-  Alert
+  Alert,
+  Vibration
 } from "react-native";
 import BigPrimaryButton from "../components/BigPrimaryButton";
 import BigSecondaryButton from "../components/BigSecondaryButton";
 
 import colors from "../constants/Colors";
 import pages from "../constants/Pages";
-import splashImg from "../assets/splash.png";
+import splashImg from "../assets/name.png";
 
 import { db, auth } from "../config";
 

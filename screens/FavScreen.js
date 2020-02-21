@@ -6,7 +6,7 @@ import BottomBar from "../components/BottomBar";
 const FavScreen = props => {
   return (
     <View style={styles.screen}>
-      <TopBar />
+      <TopBar switchHandler={props.switchHandler} favActive={true} />
       <View style={styles.mainCard}>
         <Text>Favorites Screen</Text>
       </View>

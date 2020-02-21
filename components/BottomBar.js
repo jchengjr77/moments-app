@@ -5,7 +5,7 @@ import pages from "../constants/Pages";
 
 // Icon imports
 import bookIcon from "../assets/feathericons/book-open.png";
-import starIcon from "../assets/feathericons/star.png";
+import plusIcon from "../assets/feathericons/plus.png";
 import friendsIcon from "../assets/feathericons/users.png";
 // End
 
@@ -16,7 +16,6 @@ import friendsIcon from "../assets/feathericons/users.png";
  *      highlighted. There are three options that are scanned for:
  *          - "friends"
  *          - "lib"
- *          - "favs"
  *      Depending on which string is fed in as the 'active' prop, then
  *      the buttons on the bottom will highlight differently.
  *  @param props.switchHandler
@@ -43,17 +42,8 @@ const BottomBar = props => {
     }
   };
 
-  const toFavsHandler = active => {
-    if (active) {
-      props.switchHandler(pages.homePage);
-    } else {
-      props.switchHandler(pages.favPage);
-    }
-  };
-
   let friendsActive,
-    libActive,
-    favActive = false;
+    libActive = false;
 
   switch (props.active) {
     case "friends":
@@ -61,9 +51,6 @@ const BottomBar = props => {
       break;
     case "lib":
       libActive = true;
-      break;
-    case "fav":
-      favActive = true;
       break;
     default:
       break;
@@ -77,17 +64,12 @@ const BottomBar = props => {
         onPress={() => toFriendsHandler(friendsActive)}
         active={friendsActive}
       />
+      <IconButton width={Dimensions.get("window").width * 0.3} img={plusIcon} />
       <IconButton
         width={Dimensions.get("window").width * 0.3}
         img={bookIcon}
         onPress={() => toLibHandler(libActive)}
         active={libActive}
-      />
-      <IconButton
-        width={Dimensions.get("window").width * 0.3}
-        img={starIcon}
-        onPress={() => toFavsHandler(favActive)}
-        active={favActive}
       />
     </View>
   );

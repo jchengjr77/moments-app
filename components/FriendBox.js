@@ -14,16 +14,13 @@ import sendLove from "../assets/feathericons/heart.png";
 const FriendBox = props => {
   const friendHandler = name => {
     console.log("Clicked on friend: " + name);
-    //setCurrPage("");
   };
   const deleteHandler = name => {
     console.log("Deleted Friend: " + name);
-    //setCurrPage("");
   };
 
   const loveHandler = name => {
     console.log("Sent Love to Friend: " + name);
-    //setCurrPage("");
   };
 
   return (

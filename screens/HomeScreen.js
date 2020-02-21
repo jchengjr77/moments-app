@@ -24,7 +24,7 @@ const HomeScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <TopBar switchHandler={props.switchHandler} />
+      <TopBar switchHandler={props.switchHandler} favActive={false} />
       <View style={styles.mainCard}>
         <Text>My email: {user.email}</Text>
         <Text>My username: {username}</Text>
