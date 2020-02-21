@@ -19,15 +19,33 @@ import colors from "../constants/Colors";
 import pages from "../constants/Pages";
 import splashImg from "../assets/name.png";
 
-import { db } from "../config";
+import { db, auth } from "../config";
 
 // Function to add user to the database
 const addUser = (usr, pw, email) => {
-  db.ref("/users").push({
-    username: usr,
-    password: pw,
-    email: email
-  });
+  // Create a new user
+  auth
+    .createUserWithEmailAndPassword(email, pw)
+    .catch(error => {
+      console.log("Unable to register user: " + email);
+      console.log(error);
+      Alert.alert("Unable to register user: " + email);
+      return;
+    })
+    .then(() => {
+      auth.signInWithEmailAndPassword(email, pw).catch(error => {
+        console.log("Unable to signin user: " + email);
+        console.log(error);
+        Alert.alert("Unable to signin user: " + email);
+        return;
+      });
+      let usersInfo = db.ref("users");
+      usersInfo.push({
+        username: usr,
+        email: email
+      });
+    });
+
   Alert.alert("Welcome, " + usr);
 };
 

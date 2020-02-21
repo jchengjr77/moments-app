@@ -14,6 +14,8 @@ import pages from "../constants/Pages";
 import logoutIcon from "../assets/feathericons/log-out.png";
 import starIcon from "../assets/feathericons/star.png";
 
+import { auth } from "../config";
+
 const TopBar = props => {
   const logoutHandler = () => {
     Alert.alert(
@@ -25,7 +27,18 @@ const TopBar = props => {
           onPress: () => console.log("Logout Cancelled"),
           style: "cancel"
         },
-        { text: "OK", onPress: () => props.switchHandler(pages.startPage) }
+        { text: "OK", onPress: () => {
+            auth
+            .signOut()
+            .then(() => {
+              console.log("Signout successful");
+            })
+            .catch(error => {
+              console.log("Couldn't sign out:");
+              console.log(error);
+            });
+          props.switchHandler(pages.startPage);
+        } }
       ],
       { cancelable: false }
     );
