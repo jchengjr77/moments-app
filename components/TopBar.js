@@ -10,11 +10,22 @@ import {
 import namebar from "../assets/splash-basic-removebg.png";
 import pages from "../constants/Pages";
 
+import { auth } from "../config";
+
 const TopBar = props => {
   return (
     <View style={styles.topBar}>
       <TouchableHighlight
         onPress={() => {
+          auth
+            .signOut()
+            .then(() => {
+              console.log("Signout successful");
+            })
+            .catch(error => {
+              console.log("Couldn't sign out:");
+              console.log(error);
+            });
           props.switchHandler(pages.startPage);
         }}
         style={styles.nameArea}

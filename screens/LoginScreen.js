@@ -18,34 +18,31 @@ import colors from "../constants/Colors";
 import pages from "../constants/Pages";
 import splashImg from "../assets/splash.png";
 
-import { db } from "../config";
+import { db, auth } from "../config";
 
 const LoginScreen = props => {
-  const [usrvalue, onChangeTextUsr] = useState("");
+  const [email, onChangeTextUsr] = useState("");
   const [pwvalue, onChangeTextPw] = useState("");
   const [usrSel, setUsrSel] = useState(false);
   const [pwSel, setPwSel] = useState(false);
   const [offset, setOffset] = useState(0);
 
   // Check login credentials
-  const userAuth = (usr, pw) => {
-    // Grab users reference from firebase
-    let userRef = db.ref("/users");
-    let auth = false;
-
-    // Extract all users from userRef and check credentials
-    userRef.on("value", users => {
-      users.forEach(user => {
-        const creds = user.val();
-        if (creds.username === usr && creds.password === pw) {
+  const userAuth = (email, pw) => {
+    auth
+      .signInWithEmailAndPassword(email, pw)
+      .catch(error => {
+        Alert.alert("Username and/or Password do not match");
+        console.log("Login failed for: " + email);
+        console.log("Password used: " + pw);
+        console.log(error);
+      })
+      .then(() => {
+        if (auth.currentUser != null) {
+          console.log("Login successful for: " + email);
           props.switchHandler(pages.homePage);
-          auth = true;
         }
       });
-    });
-    if (auth == false) {
-      Alert.alert("Username and/or Password do not match");
-    }
   };
 
   return (
@@ -53,8 +50,8 @@ const LoginScreen = props => {
       <ImageBackground style={styles.splash} source={splashImg}>
         <View style={styles.buttonCont}>
           <TextInput
-            value={usrvalue}
-            placeholder="Username"
+            value={email}
+            placeholder="Email"
             placeholderTextColor="#AAAAAA"
             onChangeText={text => onChangeTextUsr(text)}
             style={{
@@ -94,7 +91,7 @@ const LoginScreen = props => {
             <BigPrimaryButton
               title="Submit"
               onPress={() => {
-                userAuth(usrvalue, pwvalue);
+                userAuth(email, pwvalue);
               }}
             />
             <BigSecondaryButton
