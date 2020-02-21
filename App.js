@@ -27,10 +27,6 @@ export default function App() {
    * currPage also scans for that specific key string.
    */
   const handleSwitchPages = keyString => {
-    /**
-     * ! This needs some error checking
-     */
-    console.log("Switching to page: " + keyString);
     setCurrPage(keyString);
   };
 
