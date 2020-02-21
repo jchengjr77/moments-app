@@ -6,13 +6,23 @@ import {
   StyleSheet,
   TouchableHighlight
 } from "react-native";
+import IconButton from "./IconButton";
 
 import namebar from "../assets/splash-basic-removebg.png";
 import pages from "../constants/Pages";
+import menuIcon from "../assets/feathericons/menu.png";
+import cameraIcon from "../assets/feathericons/camera.png";
 
 const TopBar = props => {
   return (
     <View style={styles.topBar}>
+      <View style={styles.starButton}>
+        <IconButton
+          width={Dimensions.get("window").width * 0.1}
+          height={Dimensions.get("window").width * 0.1}
+          img={menuIcon}
+        />
+      </View>
       <TouchableHighlight
         onPress={() => {
           props.switchHandler(pages.startPage);
@@ -25,6 +35,13 @@ const TopBar = props => {
           resizeMode="contain"
         />
       </TouchableHighlight>
+      <View style={styles.cameraButton}>
+        <IconButton
+          width={Dimensions.get("window").width * 0.1}
+          height={Dimensions.get("window").width * 0.1}
+          img={cameraIcon}
+        />
+      </View>
     </View>
   );
 };
