@@ -6,7 +6,7 @@ import BottomBar from "../components/BottomBar";
 const HomeScreen = props => {
   return (
     <View style={styles.screen}>
-      <TopBar switchHandler={props.switchHandler} />
+      <TopBar switchHandler={props.switchHandler} favActive={false} />
       <View style={styles.mainCard}>
         <Text>Main Card</Text>
       </View>

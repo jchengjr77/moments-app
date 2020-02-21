@@ -1,45 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Image,
   Dimensions,
   StyleSheet,
-  TouchableHighlight
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import IconButton from "./IconButton";
 
 import namebar from "../assets/splash-basic-removebg.png";
 import pages from "../constants/Pages";
-import menuIcon from "../assets/feathericons/menu.png";
-import cameraIcon from "../assets/feathericons/camera.png";
+import logoutIcon from "../assets/feathericons/log-out.png";
+import starIcon from "../assets/feathericons/star.png";
 
 const TopBar = props => {
+  const logoutHandler = () => {
+    Alert.alert(
+      "Log Out",
+      "Are you sure you want to leave?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Logout Cancelled"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => props.switchHandler(pages.startPage) }
+      ],
+      { cancelable: false }
+    );
+  };
+
+  const toFavsHandler = () => {
+    if (props.favActive) {
+      props.switchHandler(pages.homePage);
+    } else {
+      props.switchHandler(pages.favPage);
+    }
+  };
   return (
     <View style={styles.topBar}>
       <View style={styles.starButton}>
         <IconButton
           width={Dimensions.get("window").width * 0.1}
           height={Dimensions.get("window").width * 0.1}
-          img={menuIcon}
+          img={logoutIcon}
+          onPress={logoutHandler}
         />
       </View>
-      <TouchableHighlight
-        onPress={() => {
-          props.switchHandler(pages.startPage);
-        }}
+      <TouchableOpacity
         style={styles.nameArea}
+        onPress={() => {
+          props.switchHandler(pages.homePage);
+        }}
       >
         <Image
           source={namebar}
           style={styles.nameButton}
           resizeMode="contain"
         />
-      </TouchableHighlight>
+      </TouchableOpacity>
       <View style={styles.cameraButton}>
         <IconButton
           width={Dimensions.get("window").width * 0.1}
           height={Dimensions.get("window").width * 0.1}
-          img={cameraIcon}
+          img={starIcon}
+          active={props.favActive}
+          onPress={() => toFavsHandler()}
         />
       </View>
     </View>
@@ -67,6 +94,23 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: undefined
+  },
+  starButton: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around"
+  },
+  nameArea: {
+    flex: 3,
+    alignItems: "center",
+    paddingLeft: 10
+  },
+  cameraButton: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around"
   }
 });
 

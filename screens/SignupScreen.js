@@ -17,7 +17,7 @@ import BigSecondaryButton from "../components/BigSecondaryButton";
 
 import colors from "../constants/Colors";
 import pages from "../constants/Pages";
-import splashImg from "../assets/splash.png";
+import splashImg from "../assets/name.png";
 
 import { db } from "../config";
 
