@@ -11,9 +11,9 @@ import colors from "../constants/Colors";
 import favoriteUnselected from "../assets/feathericons/star.png";
 import favoriteSelected from "../assets/feathericons/filled-star.png";
 
-const MomentCard = props => {
-  const { title, bodyText, tags, date } = props;
-  const [favorited, setFavorited] = useState(false);
+const CardCollapsed = props => {
+  const { title, date, wasFavorited } = props;
+  const [favorited, setFavorited] = useState(wasFavorited);
   return (
     <View>
       <View style={styles.bottomShadow}>
@@ -21,7 +21,12 @@ const MomentCard = props => {
           <View style={styles.cardBody}>
             <View style={styles.titleContainer}>
               {/* Card Title  */}
-              <View>
+              <View
+                style={{
+                  width: Dimensions.get("window").width * 0.58,
+                  height: "auto",
+                }}
+              >
                 <Text style={styles.titleText}>{title}</Text>
               </View>
 
@@ -35,11 +40,6 @@ const MomentCard = props => {
                   />
                 </TouchableWithoutFeedback>
               </View>
-            </View>
-
-            {/* Body Text */}
-            <View style={styles.bodyContainer}>
-              <Text style={styles.bodyText}>{bodyText}</Text>
             </View>
 
             {/* Date */}
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   cardBody: {
     flexDirection: "column",
     width: Dimensions.get("window").width * 0.8,
-    height: Dimensions.get("window").height * 0.6,
+    height: Dimensions.get("window").height * 0.13,
     borderRadius: 10,
     backgroundColor: "#F0F0F0"
   },
@@ -85,17 +85,19 @@ const styles = StyleSheet.create({
     flex: 3,
     flexDirection: "row",
     paddingLeft: Dimensions.get("window").width * 0.08,
-    paddingTop: Dimensions.get("window").width * 0.08
+    paddingTop: Dimensions.get("window").width * 0.03
   },
   titleText: {
-    fontSize: 36,
+    flex: 1,
+    fontSize: 30,
     fontWeight: "300",
-    color: colors.primary
+    color: colors.primary,
+    alignItems: "flex-start"
   },
   favoriteContainer: {
     position: "absolute",
-    top: Dimensions.get("window").width * 0.1,
-    right: Dimensions.get("window").width * 0.1,
+    top: Dimensions.get("window").width * 0.05,
+    right: Dimensions.get("window").width * 0.05
   },
   bodyContainer: {
     flex: 18,
@@ -153,4 +155,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MomentCard;
+export default CardCollapsed;

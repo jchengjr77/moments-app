@@ -1,0 +1,38 @@
+[
+    {
+       "id": 0,
+       "title": "JJ's Birthday",
+       "date": "6/23/2019",
+       "favorited": false
+    },
+    {
+        "id": 1,
+        "title": "Went Ice Skating",
+        "date": "02/01/2020",
+        "favorited": true
+     },
+     {
+         "id": 2,
+         "title": "Jeff said that thing",
+         "date": "02/28/2020",
+         "favorited": false
+     },
+     {
+        "id": 3,
+        "title": "LLLLLLLLLLLLLLL",
+        "date": "02/28/2020",
+        "favorited": false
+    },
+    {
+        "id": 4,
+        "title": "LLLLLLLLLLLLLLL",
+        "date": "02/28/2020",
+        "favorited": false
+    },
+    {
+        "id": 5,
+        "title": "LLLLLLLLLLLLLLL",
+        "date": "02/28/2020",
+        "favorited": false
+    }
+]
