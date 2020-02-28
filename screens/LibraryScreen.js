@@ -12,18 +12,12 @@ const LibraryScreen = props => {
       <View style={styles.mainCard}>
         <ScrollView
           showsVerticalScrollIndicator={false}
-          style={{
-            width: Dimensions.get("window").width,
-            height: Dimensions.get("window").height
-          }}
-          contentContainerStyle={{ alignItems: "center" }}
+          style={styles.srollingExternContainer}
+          contentContainerStyle={styles.scrollingContenterContainer}
         >
           {data.map(moment => {
             return (
-              <View
-                style={{ paddingBottom: Dimensions.get("window").width * 0.05 }}
-                key={moment.id}
-              >
+              <View style={styles.cardContainer} key={moment.id}>
                 <CardCollapsed
                   title={moment.title}
                   date={moment.date}
@@ -48,7 +42,13 @@ const styles = StyleSheet.create({
   mainCard: {
     flex: 6,
     justifyContent: "center"
-  }
+  },
+  srollingExternContainer: {
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height
+  },
+  scrollingContenterContainer: { alignItems: "center" },
+  cardContainer: { paddingBottom: Dimensions.get("window").width * 0.05 }
 });
 
 export default LibraryScreen;

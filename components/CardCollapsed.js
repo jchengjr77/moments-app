@@ -21,12 +21,7 @@ const CardCollapsed = props => {
           <View style={styles.cardBody}>
             <View style={styles.titleContainer}>
               {/* Card Title  */}
-              <View
-                style={{
-                  width: Dimensions.get("window").width * 0.58,
-                  height: "auto",
-                }}
-              >
+              <View style={styles.textBox}>
                 <Text style={styles.titleText}>{title}</Text>
               </View>
 
@@ -152,6 +147,10 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingLeft: Dimensions.get("window").width * 0.08,
     paddingBottom: Dimensions.get("window").width * 0.03
+  },
+  textBox: {
+    width: Dimensions.get("window").width * 0.58,
+    height: "auto"
   }
 });
 
