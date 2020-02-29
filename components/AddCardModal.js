@@ -13,7 +13,14 @@ const AddCardModal = props => {
   const [offset, setOffset] = useState(0);
 
   return (
-    <Modal isVisible={props.open} onBackdropPress={() => props.setOpen(false)}>
+    <Modal
+      isVisible={props.open}
+      onBackdropPress={() => {
+        setTitle("");
+        setBody("");
+        props.setOpen(false);
+      }}
+    >
       <View style={styles.addModal}>
         <Text style={styles.headerText}>Title:</Text>
         <TextInput
@@ -58,8 +65,22 @@ const AddCardModal = props => {
           }}
         />
         <View style={styles.addButton}>
-          <SecButton title="Cancel" onPress={() => props.setOpen(false)} />
-          <PriButton title="Add" onPress={() => props.setOpen(false)} />
+          <SecButton
+            title="Cancel"
+            onPress={() => {
+              setTitle("");
+              setBody("");
+              props.setOpen(false);
+            }}
+          />
+          <PriButton
+            title="Add"
+            onPress={() => {
+              setTitle("");
+              setBody("");
+              props.setOpen(false);
+            }}
+          />
         </View>
       </View>
     </Modal>
