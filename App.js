@@ -10,6 +10,7 @@ import pages from "./constants/Pages";
 import FriendScreen from "./screens/FriendScreen";
 import LibraryScreen from "./screens/LibraryScreen";
 import FavScreen from "./screens/FavScreen";
+import UnderConstruction from "./screens/UnderConstruction";
 
 import colors from "./constants/Colors";
 
@@ -67,7 +68,7 @@ export default function App() {
   } else if (currPage === pages.homePage) {
     content = <HomeScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.friendsPage) {
-    content = <FriendScreen switchHandler={handleSwitchPages} />;
+    content = <UnderConstruction switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.libPage) {
     content = <LibraryScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.favPage) {

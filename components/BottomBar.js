@@ -1,6 +1,7 @@
-import React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
 import IconButton from "../components/IconButton";
+import AddCardModal from "../components/AddCardModal";
 import pages from "../constants/Pages";
 
 // Icon imports
@@ -26,6 +27,8 @@ import friendsIcon from "../assets/feathericons/users.png";
  */
 
 const BottomBar = props => {
+  const [addOpen, setAddOpen] = useState(false);
+
   const toFriendsHandler = active => {
     if (active) {
       props.switchHandler(pages.homePage);
@@ -40,6 +43,10 @@ const BottomBar = props => {
     } else {
       props.switchHandler(pages.libPage);
     }
+  };
+
+  const addCardHandler = () => {
+    props.switchHandler();
   };
 
   let friendsActive,
@@ -64,7 +71,12 @@ const BottomBar = props => {
         onPress={() => toFriendsHandler(friendsActive)}
         active={friendsActive}
       />
-      <IconButton width={Dimensions.get("window").width * 0.3} img={plusIcon} />
+      <IconButton
+        width={Dimensions.get("window").width * 0.3}
+        img={plusIcon}
+        onPress={() => setAddOpen(true)}
+      />
+      <AddCardModal open={addOpen} setOpen={setAddOpen} />
       <IconButton
         width={Dimensions.get("window").width * 0.3}
         img={bookIcon}

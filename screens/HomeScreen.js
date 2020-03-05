@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet } from "react-native";
 import TopBar from "../components/TopBar";
 import BottomBar from "../components/BottomBar";
 import MomentCard from "../components/MomentCard";
@@ -13,15 +13,6 @@ const HomeScreen = props => {
   const user = auth.currentUser;
   const usersRef = db.ref("users");
 
-  useEffect(() => {
-    usersRef
-      .orderByChild("email")
-      .equalTo(user.email)
-      .on("child_added", data => {
-        setUsername(data.val().username);
-      });
-  });
-
   return (
     <View style={styles.screen}>
       <TopBar switchHandler={props.switchHandler} favActive={false} />
@@ -31,10 +22,6 @@ const HomeScreen = props => {
           bodyText="The quick brown fox jumped over the lazy dog"
           date="2/21/2020"
         />
-        {/* <CardCollapsed 
-          title="Card Title"
-          date="2/21/2020"
-        /> */}
       </View>
       <BottomBar switchHandler={props.switchHandler} active="home" />
     </View>
