@@ -39,11 +39,28 @@ const addUser = (usr, pw, email) => {
         Alert.alert("Unable to signin user: " + email);
         return;
       });
-      let usersInfo = db.ref("users");
-      usersInfo.push({
+      let userID = auth.currentUser.uid;
+      let userInfo = db.ref("users/" + userID);
+      userInfo.child(usr).set({
         username: usr,
         email: email
       });
+      let date = new Date();
+      userInfo
+        .child("moments")
+        .child(Date.now())
+        .set({
+          title: "My First Moment",
+          body:
+            "Welcome to Moments! We hope we can remind you of some awesome times :)",
+          date:
+            date.getMonth() +
+            1 +
+            "/" +
+            date.getDate() +
+            "/" +
+            date.getFullYear()
+        });
     });
 
   Alert.alert("Welcome, " + usr);
