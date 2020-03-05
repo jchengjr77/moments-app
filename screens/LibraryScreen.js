@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -6,66 +6,105 @@ import {
   ScrollView,
   TouchableWithoutFeedback
 } from "react-native";
+import { AppLoading } from "expo";
 import TopBar from "../components/TopBar";
 import BottomBar from "../components/BottomBar";
 import CardCollapsed from "../components/CardCollapsed";
 import MomentCard from "../components/MomentCard";
-import data from "../data/LibraryData";
+import { db, auth } from "../config";
 
 const LibraryScreen = props => {
-  [open, setOpen] = useState(-1);
-  return (
-    <View style={styles.screen}>
-      <TopBar switchHandler={props.switchHandler} favActive={false} />
-      <View style={styles.mainCard}>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          style={styles.srollingExternContainer}
-          contentContainerStyle={styles.scrollingContenterContainer}
-        >
-          {data.map((moment, index) => {
-            if (index == open) {
-              return (
-                <View style={styles.cardContainer} key={moment.id}>
-                  <TouchableWithoutFeedback onPress={() => setOpen(-1)}>
-                    <View>
-                      <MomentCard
-                        title={moment.title}
-                        date={moment.date}
-                        bodyText={moment.body}
-                      />
-                    </View>
-                  </TouchableWithoutFeedback>
-                </View>
-              );
-            } else {
-              return (
-                <View style={styles.cardContainer} key={moment.id}>
-                  <TouchableWithoutFeedback onPress={() => setOpen(index)}>
-                    <View>
-                    <CardCollapsed
-                      title={moment.title}
-                      date={moment.date}
-                      wasFavorited={moment.favorited}
-                    />
-                    </View>
-                  </TouchableWithoutFeedback>
-                </View>
-              );
-            }
-          })}
-        </ScrollView>
+  const [open, setOpen] = useState(-1);
+  const [loaded, setLoaded] = useState(false);
+  const [data, setData] = useState([]);
+
+  let userid = auth.currentUser.uid;
+  let userRef = db.ref("users/" + userid + "/moments");
+
+  const handleLoadComplete = () => {
+    setLoaded(true);
+  };
+
+  const handleLoadError = error => {
+    console.warn(error);
+  };
+
+  async function loadAsyncData() {
+    let tmp = [];
+    userRef
+      .orderByKey()
+      .once("value")
+      .then(function(snapshot) {
+        snapshot.forEach(function(childSnap) {
+          tmp.push(childSnap.val());
+        });
+      }).then(() => setData(tmp));
+  }
+
+  if (loaded) {
+    // If all content is finished loading
+    return (
+      <View style={styles.screen}>
+        <TopBar switchHandler={props.switchHandler} favActive={false} />
+        <View style={styles.mainCard}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={styles.srollingExternContainer}
+            contentContainerStyle={styles.scrollingContenterContainer}
+          >
+            {data.map((moment, index) => {
+              if (index == open) {
+                return (
+                  <View style={styles.cardContainer} key={index}>
+                    <TouchableWithoutFeedback onPress={() => setOpen(-1)}>
+                      <View>
+                        <MomentCard
+                          title={moment.title}
+                          date={moment.date}
+                          bodyText={moment.body}
+                        />
+                      </View>
+                    </TouchableWithoutFeedback>
+                  </View>
+                );
+              } else {
+                return (
+                  <View style={styles.cardContainer} key={index}>
+                    <TouchableWithoutFeedback onPress={() => setOpen(index)}>
+                      <View>
+                        <CardCollapsed
+                          title={moment.title}
+                          date={moment.date}
+                          wasFavorited={moment.favorited}
+                        />
+                      </View>
+                    </TouchableWithoutFeedback>
+                  </View>
+                );
+              }
+            })}
+          </ScrollView>
+        </View>
+        <BottomBar switchHandler={props.switchHandler} active="lib" />
       </View>
-      <BottomBar switchHandler={props.switchHandler} active="lib" />
-    </View>
-  );
+    );
+  } else {
+    // AppLoading component loads all resouces first
+    return (
+      <AppLoading
+        startAsync={loadAsyncData}
+        onError={handleLoadError}
+        onFinish={handleLoadComplete}
+      />
+    );
+  }
 };
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   mainCard: {
     flex: 6,
