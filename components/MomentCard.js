@@ -21,7 +21,7 @@ const MomentCard = props => {
           <View style={styles.cardBody}>
             <View style={styles.titleContainer}>
               {/* Card Title  */}
-              <View>
+              <View style={styles.textBox}>
                 <Text style={styles.titleText}>{title}</Text>
               </View>
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   cardBody: {
     flexDirection: "column",
     width: Dimensions.get("window").width * 0.8,
-    height: Dimensions.get("window").height * 0.6,
+    height: Dimensions.get("window").height * 0.58,
     borderRadius: 10,
     backgroundColor: "#F0F0F0"
   },
@@ -88,9 +88,11 @@ const styles = StyleSheet.create({
     paddingTop: Dimensions.get("window").width * 0.08
   },
   titleText: {
-    fontSize: 36,
+    flex: 1,
+    fontSize: 30,
     fontWeight: "300",
-    color: colors.primary
+    color: colors.primary,
+    alignItems: "flex-start"
   },
   favoriteContainer: {
     position: "absolute",
@@ -150,6 +152,10 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingLeft: Dimensions.get("window").width * 0.08,
     paddingBottom: Dimensions.get("window").width * 0.03
+  },
+  textBox: {
+    width: Dimensions.get("window").width * 0.58,
+    height: "auto"
   }
 });
 
