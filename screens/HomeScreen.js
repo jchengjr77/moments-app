@@ -12,15 +12,6 @@ const HomeScreen = props => {
   const user = auth.currentUser;
   const usersRef = db.ref("users");
 
-  useEffect(() => {
-    usersRef
-      .orderByChild("email")
-      .equalTo(user.email)
-      .on("child_added", data => {
-        setUsername(data.val().username);
-      });
-  });
-
   return (
     <View style={styles.screen}>
       <TopBar switchHandler={props.switchHandler} favActive={false} />

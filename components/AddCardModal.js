@@ -1,16 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, Dimensions } from "react-native";
 import Modal from "react-native-modal";
 import PriButton from "../components/BigPrimaryButton";
 import SecButton from "../components/BigSecondaryButton";
 import colors from "../constants/Colors";
 
+import { db, auth } from "../config";
+
 const AddCardModal = props => {
   const [titleSel, setTitleSel] = useState(false);
   const [bodySel, setBodySel] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [offset, setOffset] = useState(0);
+
+  const user = auth.currentUser;
+
+  var userID = user ? user.uid : "n/a";
+
+  const submitHandler = () => {
+    let userData = db.ref("users/" + userID);
+    let momentsList = userData.child("moments");
+    let date = new Date();
+    momentsList.child(Date.now()).set({
+      title: title,
+      body: body,
+      date:
+        date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear()
+    });
+  };
 
   return (
     <Modal
@@ -35,11 +52,9 @@ const AddCardModal = props => {
           }}
           onFocus={() => {
             setTitleSel(true);
-            setOffset(-175);
           }}
           onBlur={() => {
             setTitleSel(false);
-            setOffset(0);
           }}
         />
         <Text style={styles.subtext}>Characters Left: {15 - title.length}</Text>
@@ -57,11 +72,9 @@ const AddCardModal = props => {
           }}
           onFocus={() => {
             setBodySel(true);
-            setOffset(-175);
           }}
           onBlur={() => {
             setBodySel(false);
-            setOffset(0);
           }}
         />
         <View style={styles.addButton}>
@@ -76,6 +89,7 @@ const AddCardModal = props => {
           <PriButton
             title="Add"
             onPress={() => {
+              submitHandler();
               setTitle("");
               setBody("");
               props.setOpen(false);
