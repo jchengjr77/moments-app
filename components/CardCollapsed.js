@@ -5,15 +5,22 @@ import {
   Text,
   Dimensions,
   Image,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  TouchableHighlight
 } from "react-native";
 import colors from "../constants/Colors";
 import favoriteUnselected from "../assets/feathericons/star.png";
 import favoriteSelected from "../assets/feathericons/filled-star.png";
+import deleteCard from "../assets/feathericons/trash.png";
 
 const CardCollapsed = props => {
   const { title, date, wasFavorited } = props;
   const [favorited, setFavorited] = useState(wasFavorited);
+
+  const deleteHandler = name => {
+    console.log("Deleted Card: " + name);
+  };
+
   return (
     <View>
       <View style={styles.bottomShadow}>
@@ -37,9 +44,19 @@ const CardCollapsed = props => {
               </View>
             </View>
 
-            {/* Date */}
-            <View style={styles.dateContainer}>
+            {/* Bottom Row */}
+            <View style={styles.bottomRowContainer}>
               <Text style={styles.dateText}>{date}</Text>
+
+              <View style={styles.deleteButton}>
+                <TouchableWithoutFeedback
+                  onPress={deleteHandler.bind(this, "card")}
+                >
+                  <View style={styles.builtinView}>
+                    <Image style={styles.builtinImg} source={deleteCard} />
+                  </View>
+                </TouchableWithoutFeedback>
+              </View>
             </View>
           </View>
         </View>
@@ -109,30 +126,6 @@ const styles = StyleSheet.create({
     marginLeft: Dimensions.get("window").width * 0.08,
     marginRight: Dimensions.get("window").width * 0.08
   },
-  redTag: {
-    width: 50,
-    height: 30,
-    borderRadius: 7,
-    backgroundColor: "#FF000070",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  greenTag: {
-    width: 50,
-    height: 30,
-    borderRadius: 7,
-    backgroundColor: "#00FF0070",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  blueTag: {
-    width: 50,
-    height: 30,
-    borderRadius: 7,
-    backgroundColor: "#0000FF70",
-    alignItems: "center",
-    justifyContent: "center"
-  },
   tagText: {
     fontWeight: "bold",
     color: colors.primary
@@ -141,16 +134,31 @@ const styles = StyleSheet.create({
     color: "#a9adbf",
     fontSize: 20
   },
-  dateContainer: {
+  bottomRowContainer: {
     flex: 1,
+    flexDirection: "row",
     alignItems: "flex-start",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     paddingLeft: Dimensions.get("window").width * 0.08,
-    paddingBottom: Dimensions.get("window").width * 0.03
+    paddingBottom: Dimensions.get("window").width * 0.05
   },
   textBox: {
     width: Dimensions.get("window").width * 0.58,
     height: "auto"
+  },
+  builtinView: {
+    width: Dimensions.get("window").width * 0.06,
+    height: Dimensions.get("window").width * 0.06,
+    alignSelf: "flex-end"
+  },
+  builtinImg: {
+    flex: 1,
+    height: undefined,
+    width: undefined
+  },
+  deleteButton: {
+    paddingRight: Dimensions.get("window").width * 0.05,
+    paddingBottom: Dimensions.get("window").width * 0.03
   }
 });
 
