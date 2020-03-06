@@ -13,12 +13,12 @@ import favoriteSelected from "../assets/feathericons/filled-star.png";
 import deleteCard from "../assets/feathericons/trash.png";
 
 const MomentCard = props => {
-  const { title, bodyText, date } = props;
+  const { title, bodyText, date, deleteHandler } = props;
   const [favorited, setFavorited] = useState(false);
 
-  const deleteHandler = name => {
-    console.log("Deleted Card: " + name);
-  };
+  // const deleteHandler = name => {
+  //   console.log("Deleted Card: " + name);
+  // };
 
   return (
     <View>
@@ -54,7 +54,8 @@ const MomentCard = props => {
 
               <View style={styles.deleteButton}>
                 <TouchableWithoutFeedback
-                  onPress={deleteHandler.bind(this, "card")}
+                  // onPress={deleteHandler.bind(this, "card")}
+                  onPress={deleteHandler}
                 >
                   <View style={styles.builtinView}>
                     <Image style={styles.builtinImg} source={deleteCard} />

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, forceUpdate } from "react";
 import {
   View,
   StyleSheet,
   Dimensions,
   ScrollView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 } from "react-native";
 import { AppLoading } from "expo";
 import TopBar from "../components/TopBar";
@@ -36,10 +37,40 @@ const LibraryScreen = props => {
       .once("value")
       .then(function(snapshot) {
         snapshot.forEach(function(childSnap) {
-          tmp.push(childSnap.val());
+          let thisMomentKey = childSnap.key;
+          let thisMomentData = childSnap.val();
+          let thisMomentObj = {
+            key: thisMomentKey,
+            data: thisMomentData
+          };
+          tmp.push(thisMomentObj);
         });
-      }).then(() => setData(tmp));
+      })
+      .then(() => setData(tmp));
   }
+
+  const performDelete = key => {
+    userRef
+      .child(key)
+      .remove()
+      .then(loadAsyncData);
+  };
+
+  const deleteHandler = (title, key) => {
+    Alert.alert(
+      "Delete Moment",
+      'Are you sure you want to delete "' + title + '"?',
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Delete", onPress: () => performDelete(key) }
+      ],
+      { cancelable: true }
+    );
+  };
 
   if (loaded) {
     // If all content is finished loading
@@ -52,16 +83,19 @@ const LibraryScreen = props => {
             style={styles.srollingExternContainer}
             contentContainerStyle={styles.scrollingContenterContainer}
           >
-            {data.map((moment, index) => {
+            {data.map((momentObj, index) => {
               if (index == open) {
                 return (
                   <View style={styles.cardContainer} key={index}>
                     <TouchableWithoutFeedback onPress={() => setOpen(-1)}>
                       <View>
                         <MomentCard
-                          title={moment.title}
-                          date={moment.date}
-                          bodyText={moment.body}
+                          title={momentObj.data.title}
+                          date={momentObj.data.date}
+                          bodyText={momentObj.data.body}
+                          deleteHandler={() =>
+                            deleteHandler(momentObj.data.title, momentObj.key)
+                          }
                         />
                       </View>
                     </TouchableWithoutFeedback>
@@ -73,9 +107,12 @@ const LibraryScreen = props => {
                     <TouchableWithoutFeedback onPress={() => setOpen(index)}>
                       <View>
                         <CardCollapsed
-                          title={moment.title}
-                          date={moment.date}
-                          wasFavorited={moment.favorited}
+                          title={momentObj.data.title}
+                          date={momentObj.data.date}
+                          wasFavorited={momentObj.data.favorited}
+                          deleteHandler={() =>
+                            deleteHandler(momentObj.data.title, momentObj.key)
+                          }
                         />
                       </View>
                     </TouchableWithoutFeedback>
@@ -85,7 +122,11 @@ const LibraryScreen = props => {
             })}
           </ScrollView>
         </View>
-        <BottomBar switchHandler={props.switchHandler} active="lib" />
+        <BottomBar
+          switchHandler={props.switchHandler}
+          doRender={loadAsyncData}
+          active="lib"
+        />
       </View>
     );
   } else {

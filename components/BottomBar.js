@@ -76,7 +76,11 @@ const BottomBar = props => {
         img={plusIcon}
         onPress={() => setAddOpen(true)}
       />
-      <AddCardModal open={addOpen} setOpen={setAddOpen} />
+      <AddCardModal
+        open={addOpen}
+        setOpen={setAddOpen}
+        doRender={props.doRender}
+      />
       <IconButton
         width={Dimensions.get("window").width * 0.3}
         img={bookIcon}
