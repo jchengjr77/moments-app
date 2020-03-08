@@ -19,7 +19,7 @@ const UnderConstruction = props => {
           all Moments features.
         </Text>
       </View>
-      <BottomBar switchHandler={props.switchHandler} active="friends" />
+      <BottomBar switchHandler={props.switchHandler} active={props.active} />
     </View>
   );
 };
