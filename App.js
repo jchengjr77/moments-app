@@ -72,7 +72,7 @@ export default function App() {
   } else if (currPage === pages.libPage) {
     content = <LibraryScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.favPage) {
-    content = <FavScreen switchHandler={handleSwitchPages} />;
+    content = <UnderConstruction switchHandler={handleSwitchPages} />;
   }
 
   if (loaded) {
