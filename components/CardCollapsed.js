@@ -5,16 +5,17 @@ import {
   Text,
   Dimensions,
   Image,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  TouchableHighlight
 } from "react-native";
 import colors from "../constants/Colors";
 import favoriteUnselected from "../assets/feathericons/star.png";
 import favoriteSelected from "../assets/feathericons/filled-star.png";
 import deleteCard from "../assets/feathericons/trash.png";
 
-const MomentCard = props => {
-  const { title, bodyText, date, deleteHandler } = props;
-  const [favorited, setFavorited] = useState(false);
+const CardCollapsed = props => {
+  const { title, date, wasFavorited, deleteHandler } = props;
+  const [favorited, setFavorited] = useState(wasFavorited);
 
   // const deleteHandler = name => {
   //   console.log("Deleted Card: " + name);
@@ -41,11 +42,6 @@ const MomentCard = props => {
                   />
                 </TouchableWithoutFeedback>
               </View>
-            </View>
-
-            {/* Body Text */}
-            <View style={styles.bodyContainer}>
-              <Text style={styles.bodyText}>{bodyText}</Text>
             </View>
 
             {/* Bottom Row */}
@@ -94,7 +90,7 @@ const styles = StyleSheet.create({
   cardBody: {
     flexDirection: "column",
     width: Dimensions.get("window").width * 0.8,
-    height: Dimensions.get("window").height * 0.58,
+    height: Dimensions.get("window").height * 0.13,
     borderRadius: 10,
     backgroundColor: "#F0F0F0"
   },
@@ -117,7 +113,7 @@ const styles = StyleSheet.create({
     right: Dimensions.get("window").width * 0.05
   },
   bodyContainer: {
-    flex: 21,
+    flex: 18,
     marginLeft: Dimensions.get("window").width * 0.08,
     marginRight: Dimensions.get("window").width * 0.08
   },
@@ -167,4 +163,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MomentCard;
+export default CardCollapsed;

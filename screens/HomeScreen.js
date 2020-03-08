@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import TopBar from "../components/TopBar";
 import BottomBar from "../components/BottomBar";
 import MomentCard from "../components/MomentCard";
+import CardCollapsed from "../components/CardCollapsed";
 
 import { db, auth } from "../config";
 
@@ -16,8 +17,6 @@ const HomeScreen = props => {
     <View style={styles.screen}>
       <TopBar switchHandler={props.switchHandler} favActive={false} />
       <View style={styles.mainCard}>
-        {/* <Text>My email: {user.email}</Text>
-        <Text>My username: {username}</Text> */}
         <MomentCard
           title="Card Title"
           bodyText="The quick brown fox jumped over the lazy dog"

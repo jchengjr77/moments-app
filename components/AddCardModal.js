@@ -21,6 +21,9 @@ const AddCardModal = props => {
     let userData = db.ref("users/" + userID);
     let momentsList = userData.child("moments");
     let date = new Date();
+    if (props.doRender) {
+      props.doRender()
+    }
     momentsList.child(Date.now()).set({
       title: title,
       body: body,
