@@ -68,11 +68,15 @@ export default function App() {
   } else if (currPage === pages.homePage) {
     content = <HomeScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.friendsPage) {
-    content = <UnderConstruction switchHandler={handleSwitchPages} />;
+    content = (
+      <UnderConstruction switchHandler={handleSwitchPages} active="friends" />
+    );
   } else if (currPage === pages.libPage) {
     content = <LibraryScreen switchHandler={handleSwitchPages} />;
   } else if (currPage === pages.favPage) {
-    content = <FavScreen switchHandler={handleSwitchPages} />;
+    content = (
+      <UnderConstruction switchHandler={handleSwitchPages} active="fav" />
+    );
   }
 
   if (loaded) {
