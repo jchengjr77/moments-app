@@ -15,11 +15,6 @@ import deleteCard from "../assets/feathericons/trash.png";
 const MomentCard = props => {
   const { title, bodyText, date, deleteHandler } = props;
   const [favorited, setFavorited] = useState(false);
-
-  // const deleteHandler = name => {
-  //   console.log("Deleted Card: " + name);
-  // };
-
   return (
     <View>
       <View style={styles.bottomShadow}>
