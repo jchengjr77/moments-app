@@ -1,11 +1,15 @@
 {
   "expo": {
-    "name": "Moments by SVJJ",
-    "description": "Moments by SVJ is a Happiness App. Cherish the good.",
+    "name": "Moments",
+    "description": "Moments is a cross-platform Happiness app, which helps you record great times in your life. Cherish the good.\n\nMoments Team:\nJonathan Cheng - https://github.com/jchengjr77\nSean Prendi - https://github.com/SeanPrendi\nVignesh Rajmohan - https://github.com/vigneshrajmohan",
     "slug": "moments-app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,9 +21,12 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "githubUrl": "https://github.com/jchengjr77/moments-app"
   }
 }
