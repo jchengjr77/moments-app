@@ -1,6 +1,8 @@
 # Moments by SVJ
 
-#### Status: Under Construction
+#### Status: [Pre-release](https://expo.io/@jchengjr77/moments-app)
+
+Try Moments [here](https://expo.io/@jchengjr77/moments-app)!
 
 ##### Moments by SVJ is a Happiness App. Cherish the good.
 
@@ -17,7 +19,6 @@ With Moments, you can also create new memories! Send handwritten notes to your c
 - ![#303C6C](https://placehold.it/15/303C6C/000000?text=+) `#303C6C`
 - ![#B4DFE5](https://placehold.it/15/B4DFE5/000000?text=+) `#B4DFE5`
 - ![#D2FDFF](https://placehold.it/15/D2FDFF/000000?text=+) `#D2FDFF`
-
 
 ## Getting Started
 
